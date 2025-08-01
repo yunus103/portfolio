@@ -16,7 +16,6 @@ html, body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto auto auto auto;
-    width: 100%;
     overflow-y: auto;
     margin-top: 50px;
     padding-top: 50px;
@@ -273,6 +272,7 @@ svg {
         0 0 4px rgba(255, 255, 255, 0.2),
         0 0 8px rgba(126, 84, 159, 0.25),
         0 0 16px rgba(126, 84, 159, 0.2);
+        text-align: center;
 }
 
 .about-content {
@@ -589,6 +589,7 @@ svg {
     line-height: 1.4; /* NEW: Improves spacing if title wraps */
 }
 
+/* Contact Section*/
 .contact-section {
     margin-top: 120px;
     padding: 0 1rem;
@@ -866,4 +867,27 @@ svg {
     .contact-card p, .contact-card a {
         font-size: 1rem;
     }
+}
+
+@media (max-width: 768px) {
+  .home-section,
+  .about-section,
+  .portfolio-section,
+  .contact-section {
+
+    /* 1. Reset padding to be mobile-friendly. */
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+
+    /* 2. Crucial: Reset any minimum width that might be set. */
+    min-width: 0 !important;
+
+    /* 3. Re-affirm the width calculation. */
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .language-items {
+    flex-wrap: wrap;
+  }
 }
