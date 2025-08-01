@@ -647,3 +647,226 @@ svg {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
+
+/*--------------*/
+
+/* --- Hamburger Menu Icon Styling --- */
+.hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For smaller desktops and large tablets (<= 1200px) */
+@media (max-width: 1200px) {
+    .header, .home-section {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .about-content {
+        gap: 50px;
+        padding: 30px 20px;
+    }
+    #projects, #tech, #certificates {
+        max-width: 85%;
+    }
+    .portfolio-buttons {
+        max-width: 85%;
+    }
+}
+
+
+/* For tablets (<= 992px) */
+@media (max-width: 992px) {
+    /* --- General Adjustments --- */
+    .title {
+        font-size: 40px;
+    }
+    .info-text {
+        font-size: 20px;
+    }
+    .about-title {
+        font-size: 40px;
+    }
+
+    /* --- Header & Nav --- */
+    .nav-items {
+        gap: 20px;
+    }
+    .nav-item a {
+        font-size: 18px;
+    }
+
+    /* --- Home Section --- */
+    .home-section {
+        flex-direction: column-reverse; /* Stack image above text */
+        height: auto;
+        text-align: center;
+        gap: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .info-container, .img-container {
+        width: 100%;
+        align-items: center;
+    }
+    .img-container {
+        height: auto;
+    }
+    .img-container img {
+        max-width: 60%;
+    }
+    .language-items, .link-items {
+        justify-content: center;
+    }
+
+    /* --- About Section --- */
+    .about-section {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+    .about-content {
+        flex-direction: column;
+        width: 100%;
+        gap: 40px;
+    }
+    .about-info, .about-image {
+        width: 100%;
+        text-align: center;
+    }
+    .about-info .info-text {
+        text-align: left;
+        padding: 0 20px;
+    }
+    .about-img {
+        max-width: 40%;
+    }
+    .btn-resume {
+        margin-left: 0;
+    }
+
+    /* --- Portfolio Section --- */
+    #projects, #tech, #certificates {
+        max-width: 90%;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+    .portfolio-buttons {
+        max-width: 90%;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* For mobile phones (<= 768px) */
+@media (max-width: 768px) {
+    /* --- Header & Hamburger Menu --- */
+    .header {
+        padding: 20px;
+    }
+    .nav-list {
+        position: fixed;
+        left: -100%; /* Hide off-screen */
+        top: 75px; /* Position below header */
+        width: 100%;
+        height: calc(100vh - 75px);
+        background-color: rgba(25, 22, 35, 0.98);
+        backdrop-filter: blur(10px);
+        transition: left 0.35s ease;
+        z-index: 1000;
+    }
+    .nav-list.active {
+        left: 0; /* Slide in */
+    }
+    .nav-items {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        height: 100%;
+    }
+    .nav-item a {
+        font-size: 24px;
+    }
+    .hamburger {
+        display: flex; /* Show the hamburger icon */
+    }
+    /* Hamburger animation to 'X' */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* --- Section Paddings --- */
+    .home-section, .about-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* --- Font Sizes --- */
+    .title {
+        font-size: 36px;
+    }
+    .info-text {
+        font-size: 18px;
+    }
+    .about-title {
+        font-size: 34px;
+    }
+    .about-quote {
+        font-size: 20px;
+    }
+    .info-title {
+        font-size: 30px;
+    }
+
+    /* --- Home Section --- */
+    .img-container img {
+        max-width: 80%;
+    }
+
+    /* --- About Section --- */
+    .about-img {
+        max-width: 50%;
+    }
+
+    /* --- Portfolio Section --- */
+    .portfolio-title {
+        max-width: 90%;
+    }
+    #projects, #tech, #certificates {
+        max-width: 100%;
+        padding: 10px;
+        grid-template-columns: 1fr; /* Single column for projects on smallest screens */
+    }
+    .portfolio-buttons {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    .portfolio-button {
+        font-size: 16px;
+        height: 70px;
+    }
+
+    /* --- Contact Section --- */
+    .contact-card {
+        padding: 2rem 1.5rem;
+    }
+    .contact-card p, .contact-card a {
+        font-size: 1rem;
+    }
+}
