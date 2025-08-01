@@ -304,6 +304,9 @@ svg {
 }
 
 .btn-resume {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
     margin-left: 80px;
     margin-top: 30px;
     padding: 15px 30px;
