@@ -722,7 +722,7 @@ svg {
         align-items: center;
     }
     .img-container {
-        height: auto;
+        display: none;
     }
     .img-container img {
         max-width: 60%;
