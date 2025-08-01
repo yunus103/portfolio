@@ -834,11 +834,6 @@ svg {
         font-size: 30px;
     }
 
-    /* --- Home Section --- */
-    .img-container img {
-        max-width: 80%;
-    }
-
     /* --- About Section --- */
     .about-img {
         max-width: 50%;
@@ -850,8 +845,9 @@ svg {
     }
     #projects, #tech, #certificates {
         max-width: 100%;
+        width: 100%; /* Ensure it takes full width */
         padding: 10px;
-        grid-template-columns: 1fr; /* Single column for projects on smallest screens */
+        grid-template-columns: 1fr; /* Force single column to prevent overflow */
     }
     .portfolio-buttons {
         max-width: 100%;
@@ -865,6 +861,7 @@ svg {
     /* --- Contact Section --- */
     .contact-card {
         padding: 2rem 1.5rem;
+        width: 90%; /* Ensure card does not overflow */
     }
     .contact-card p, .contact-card a {
         font-size: 1rem;
