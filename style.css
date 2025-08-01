@@ -590,49 +590,60 @@ svg {
 }
 
 .contact-section {
-    margin-top: 100px;
+    margin-top: 120px;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    margin-bottom: 40px;
+    scroll-margin-top: 80px;
 }
 
 .contact-card {
     width: 100%;
-    border-radius: 15px;
+    max-width: 600px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: auto;
     align-items: center;
-    background: rgba(34, 30, 40, 0.6); /* semi-transparent dark purple */
-    backdrop-filter: blur(12px);      /* glass blur effect */
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 
+    background: rgba(36, 28, 52, 0.65); /* deeper purple tint */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
         0 0 10px rgba(126, 84, 159, 0.15),
-        0 0 25px rgba(126, 84, 159, 0.05);
-    padding: 3rem 1rem;
-    text-align: left;
-    border-radius: 1rem;
+        0 0 40px rgba(126, 84, 159, 0.05);
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .contact-card svg {
     fill: #f0eaff;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
 }
 
 .contact-card p, .contact-card a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     color: #f8f6ff;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 8px;
-    background: linear-gradient(145deg, rgba(83, 55, 129, 0.4), rgba(42, 29, 78, 0.4));
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: rgba(83, 55, 129, 0.3);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1.15rem;
     font-weight: 500;
-    font-size: 1.2rem;
-    transition: all 0.25s ease;
-    backdrop-filter: blur(6px);
+    transition: background 0.3s, transform 0.2s;
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-card a:hover {
+    background: rgba(126, 84, 159, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
