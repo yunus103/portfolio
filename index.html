@@ -3,411 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yunus Aytekin</title>
+    <title>Yunus Aytekin | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-            <h1 class="logo">Yunus Emre</h1>
-            <div class="nav-list">
+    <header class="header">
+        <div class="header-inner">
+            <a class="logo" href="#home">YA</a>
+            <nav class="nav">
                 <ul class="nav-items">
-                    <li class="nav-item">
-                        <a href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact">Contact</a>
-                    </li>
+                    <li class="nav-item"><a href="#home" class="active">Home</a></li>
+                    <li class="nav-item"><a href="#about">About</a></li>
+                    <li class="nav-item"><a href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a href="#contact">Contact</a></li>
                 </ul>
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            </nav>
+            <div class="header-actions">
+                <a class="ghost-button" href="Resume.pdf" download>Download CV</a>
+                <button class="hamburger" aria-label="Toggle navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
-    <div class="container">
+    </header>
 
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content reveal">
+                <p class="eyebrow">Computer Engineer · Full Stack Web Developer</p>
+                <h1>Designing thoughtful <span>digital experiences</span></h1>
+                <p class="lede">Hi, I'm Yunus — a 4th year Computer Engineering student specializing in full-stack web development. I build scalable, responsive web applications with clean code and intentional design.</p>
+                <div class="cta-row">
+                    <a class="primary-button" href="#portfolio">View my work</a>
+                    <a class="ghost-button" href="mailto:yaytekin288@gmail.com">Let's talk</a>
+                </div>
+                <div class="pill-row">
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">React</span>
+                    <span class="pill">Node.js</span>
+                    <span class="pill">SQL</span>
+                    <span class="pill">UI Engineering</span>
+                </div>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <p class="stat-value">15+</p>
+                        <p class="stat-label">Projects shipped</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-value">4<sup>th</sup></p>
+                        <p class="stat-label">Year CS student</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-value">Open</p>
+                        <p class="stat-label">For internships</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="floating-card">
+                    <div class="floating-ring"></div>
+                    <img src="images/fullstack-development.png" alt="Developer illustration" class="hero-img">
+                    <div class="floating-chip">Frontend & Backend</div>
+                    <div class="floating-chip alt">Performance-first</div>
+                </div>
+            </div>
+        </section>
 
-        <div class="home-section" id="home">
-            <div class="info-container">
-                <h2 class="title">Computer <span>Engineer</span></h2>
-                <p class="info-text">Hi, I'm Yunus — a 4th year Computer Engineering student specializing in Full Stack Web Development. I build scalable, responsive web applications with clean code and thoughtful design.</p>
-
-                <div class="info-languages">
-                    <ul class="language-items">
-                        <li class="language-item">HTML</li>
-                        <li class="language-item">CSS</li>
-                        <li class="language-item">Javascript</li>
-                        <li class="language-item">React</li>
+        <section class="about" id="about">
+            <div class="section-header reveal">
+                <p class="eyebrow">About</p>
+                <h2>Human-first engineering</h2>
+                <p class="lede">I love translating ideas into intuitive products through clean architecture, reliable APIs, and polished UI.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card reveal">
+                    <h3>Who I am</h3>
+                    <p>I'm Yunus Emre Aytekin, a 4th-year Computer Engineering student passionate about building immersive, performant web apps. I’m always exploring new tools, refining my craft, and collaborating on meaningful products.</p>
+                    <p>I’m actively looking for internships or project partnerships where I can contribute, learn, and keep shipping real-world features.</p>
+                    <div class="chip-row">
+                        <span class="pill subtle">Design systems</span>
+                        <span class="pill subtle">Full-stack</span>
+                        <span class="pill subtle">Problem solving</span>
+                    </div>
+                    <a href="Resume.pdf" class="primary-button" download>Download CV</a>
+                </div>
+                <div class="about-card reveal">
+                    <h3>Highlights</h3>
+                    <ul class="highlight-list">
+                        <li>Built responsive React experiences, landing pages, and interactive games.</li>
+                        <li>Comfortable across the stack: JavaScript/TypeScript, React, Node.js, SQL, and UI frameworks.</li>
+                        <li>Focus on accessibility, performance, and thoughtful motion to make interfaces feel alive.</li>
                     </ul>
-                </div>
-
-                <div class="links">
-                    <ul class="link-items">
-                        <li class="link-item"><a href="https://github.com/yunus103" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><title>github</title><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg></a></li>
-                        <li class="link-item"><a href="https://www.instagram.com/yunuss_emrea/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
-                        <title>Instagram</title>
-                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-                        </svg></a></li>
-                        <li class="link-item"><a href="https://www.linkedin.com/in/yunus-aytekin-153105223/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
-                        <title>LinkedIn</title>
-                        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
-                    </svg></a></li>
-                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">HTML</span>
+                        <span class="badge">CSS</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">React</span>
+                        <span class="badge">Node</span>
+                        <span class="badge">Git</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">Java</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="img-container">
-                <img src="images/fullstack-development.png" alt="Full Stack">
-            </div>
-        </div>
-
-        <div class="about-section" id="about">
-            <div class="about-header">
-                <h1 class="about-title">About Me</h1>
-                <h4 class="about-quote">Transforming ideas into digital experiences</h4>
+        <section class="portfolio" id="portfolio">
+            <div class="section-header reveal">
+                <p class="eyebrow">Work</p>
+                <h2>Selected work and learning</h2>
+                <p class="lede">Explore my projects, the technologies that power them, and milestones from my learning journey.</p>
             </div>
 
-            <div class="about-content">
-                <div class="about-info">
-                    <h2 class="info-title">Hello. I'm Yunus Emre Aytekin.</h2>
-                    <p class="info-text">I'm a 4th-year Computer Engineering student who’s passionate about web development. I’m currently learning and building my skills in both front-end and back-end technologies.</p>
-                    <p class="info-text">
-                    While I’m still growing and gaining experience, I’m eager to improve every day and open to new challenges. I’m currently looking for internship or project opportunities where I can learn more, contribute to real-world development, and continue becoming a better developer.</p>
-
-                    <a href="Resume.pdf" download="Resume.pdf" class="btn-resume" id="btn-cv">Download CV</a>
-                </div>
-
-                <div class="about-image">
-                    <img src="images/vesikalık.jpg" alt="Personal Image" class="about-img">
-                </div>
-            </div>
-        </div>
-
-        <div class="portfolio-section" id="portfolio">
-            <div class="portfolio-title">
-                <h2 class="title">Portfolio Showcase</h2>
-                <p class="info-text">Explore my journey projects, certifications and technical expertises. Each section represents a milestone in my continuous learning path.</p>
-            </div>
-
-            <div class="portfolio-buttons">
+            <div class="portfolio-tabs">
                 <button class="portfolio-button active" data-tab="projects">Projects</button>
                 <button class="portfolio-button" data-tab="tech">Tech Stack</button>
                 <button class="portfolio-button" data-tab="certificates">Certificates</button>
             </div>
 
             <div class="tab-content active" id="projects">
-                <div class="projects-card">
-                    <img src="images/recai.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/recai.png" alt="Photographer landing page screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Photographer Landing Page</h3>
-                        <p class="project-details">A Photographer's landing page made with React.</p>
+                        <p class="project-details">A premium React landing page crafted for a photographer with cinematic visuals.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://recai-gunes-2.vercel.app/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/recai-gunes-2" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://recai-gunes-2.vercel.app/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/recai-gunes-2" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/resume.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/resume.png" alt="Resume builder screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Resume Builder</h3>
-                        <p class="project-details">A resume builder page made with React.</p>
+                        <p class="project-details">A React-based resume builder to quickly craft modern CVs.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/ats-resume-builder/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/ats-resume-builder" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/ats-resume-builder/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/ats-resume-builder" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/mutant.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/mutant.png" alt="Mutant memory run screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Mutant Memory Run</h3>
-                        <p class="project-details">Teenage Mutant Ninja Turtles Memory Game made with React.</p>
+                        <p class="project-details">A Teenage Mutant Ninja Turtles themed memory game built with React.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://memory-card-game-jjqx.vercel.app/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/memory-card-game" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://memory-card-game-jjqx.vercel.app/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/memory-card-game" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
-                
-                <div class="projects-card">
-                    <img src="images/tictac.png" alt="" class="project-img">
+
+                <div class="projects-card reveal">
+                    <img src="images/tictac.png" alt="Tic tac toe screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Tic Tac Toe</h3>
-                        <p class="project-details">Tic Tac Toe Game made with vanilla HTML, CSS and JS.</p>
+                        <p class="project-details">A minimalist Tic Tac Toe built with vanilla HTML, CSS, and JS.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/odin-tic-tac-toe/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/odin-tic-tac-toe" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/odin-tic-tac-toe/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/odin-tic-tac-toe" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/almila.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/almila.png" alt="Almila landing page screenshot" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Landing Page</h3>
-                        <p class="project-details">Landing page made with Bootstrapmade template.</p>
+                        <h3 class="project-title">Almila Landing Page</h3>
+                        <p class="project-details">A responsive landing page built from a BootstrapMade template.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://almila-kumas.vercel.app/index.html" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/almila-kumas" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://almila-kumas.vercel.app/index.html" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/almila-kumas" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/pilav.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/pilav.png" alt="Pilav landing page screenshot" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Landing Page</h3>
-                        <p class="project-details">Landing page made with Bootstrapmade template.</p>
+                        <h3 class="project-title">Pilav Landing Page</h3>
+                        <p class="project-details">Clean, marketing-focused landing page for a local brand.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/pilavcioglu/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/pilavcioglu" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/pilavcioglu/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/pilavcioglu" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/GameLibrary.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/GameLibrary.png" alt="Game library app screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Game Library App</h3>
-                        <p class="project-details">A library app to store all your games from different platforms in one place.</p>
+                        <p class="project-details">A game library to organize titles across platforms in one place.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://youtu.be/oJymXmt8g8E" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/GameLibraryApp" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://youtu.be/oJymXmt8g8E" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/GameLibraryApp" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
-                
-                <div class="projects-card">
-                    <img src="images/etch1.png" alt="" class="project-img">
+
+                <div class="projects-card reveal">
+                    <img src="images/etch1.png" alt="Etch-a-sketch screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Etch-a-Sketch</h3>
-                        <p class="project-details">An interactive Etch-a-Sketch web application where users can draw by hovering over a grid of squares. Users can customize the grid size and reset it to start over.</p>
+                        <p class="project-details">An interactive drawing grid with resettable sizes for quick sketches.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/odin-etch-a-sketch/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/odin-etch-a-sketch" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/odin-etch-a-sketch/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/odin-etch-a-sketch" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/form.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/form.png" alt="Multi-step form screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Responsive Multi Step Form</h3>
-                        <p class="project-details">This is a front-end project that implements a responsive, multi-step subscription form. Users are guided through a seamless four-step process to select a plan, choose add-ons, and confirm their subscription.</p>
+                        <p class="project-details">A guided four-step subscription form with add-ons and confirmation.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/multi-step-form/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/multi-step-form" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/multi-step-form/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/multi-step-form" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/calculator.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/calculator.png" alt="Calculator screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Calculator</h3>
-                        <p class="project-details">A simple, responsive web-based calculator built using HTML, CSS, and JavaScript. It supports basic arithmetic operations and works both with mouse clicks and keyboard input.</p>
+                        <p class="project-details">A responsive calculator supporting keyboard input and smooth layout.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/odin-calculator/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/odin-calculator" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/odin-calculator/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/odin-calculator" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
 
-                <div class="projects-card">
-                    <img src="images/rock.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/rock.png" alt="Rock paper scissors screenshot" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Rock Paper Scissors</h3>
-                        <p class="project-details">This is a simple Rock Paper Scissors game built with JavaScript, HTML, and CSS.</p>
+                        <p class="project-details">A playful classic rock-paper-scissors game in the browser.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://yunus103.github.io/odin-rock-paper-scissors/" class="live-demo" target="_blank">
-                            Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18">
-                        <title>open-in-new</title>
-                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                        </svg></a>
-                        <a href="https://github.com/yunus103/odin-rock-paper-scissors" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://yunus103.github.io/odin-rock-paper-scissors/" class="live-demo" target="_blank" rel="noreferrer">Live Demo</a>
+                        <a href="https://github.com/yunus103/odin-rock-paper-scissors" class="details" target="_blank" rel="noreferrer">Details</a>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tech">
-                <div class="tech-card">
-                    <img src="images/html.png" alt="html" class="tech-img">
-                    <h2 class="tech-title">HTML</h2>
+                <div class="tech-card reveal">
+                    <img src="images/html.png" alt="HTML" class="tech-img">
+                    <h3 class="tech-title">HTML</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/css.png" alt="css" class="tech-img">
-                    <h2 class="tech-title">CSS</h2>
+                <div class="tech-card reveal">
+                    <img src="images/css.png" alt="CSS" class="tech-img">
+                    <h3 class="tech-title">CSS</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/js.png" alt="js" class="tech-img">
-                    <h2 class="tech-title">Javascript</h2>
+                <div class="tech-card reveal">
+                    <img src="images/js.png" alt="JavaScript" class="tech-img">
+                    <h3 class="tech-title">JavaScript</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/React-icon.svg.png" alt="react" class="tech-img">
-                    <h2 class="tech-title">React</h2>
+                <div class="tech-card reveal">
+                    <img src="images/React-icon.svg.png" alt="React" class="tech-img">
+                    <h3 class="tech-title">React</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/nodejs.png" alt="node" class="tech-img">
-                    <h2 class="tech-title">NodeJS</h2>
+                <div class="tech-card reveal">
+                    <img src="images/nodejs.png" alt="Node" class="tech-img">
+                    <h3 class="tech-title">NodeJS</h3>
                 </div>
-
-                <div class="tech-card">
+                <div class="tech-card reveal">
                     <img src="images/Bootstrap_logo.svg.png" alt="Bootstrap" class="tech-img">
-                    <h2 class="tech-title">Bootstrap</h2>
+                    <h3 class="tech-title">Bootstrap</h3>
                 </div>
-            
-                <div class="tech-card">
-                    <img src="images/git.png" alt="git" class="tech-img">
-                    <h2 class="tech-title">Git</h2>
+                <div class="tech-card reveal">
+                    <img src="images/git.png" alt="Git" class="tech-img">
+                    <h3 class="tech-title">Git</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/sql.png" alt="sql" class="tech-img">
-                    <h2 class="tech-title">SQL</h2>
+                <div class="tech-card reveal">
+                    <img src="images/sql.png" alt="SQL" class="tech-img">
+                    <h3 class="tech-title">SQL</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/java.png" alt="java" class="tech-img">
-                    <h2 class="tech-title">Java</h2>
+                <div class="tech-card reveal">
+                    <img src="images/java.png" alt="Java" class="tech-img">
+                    <h3 class="tech-title">Java</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/c++.png" alt="c++" class="tech-img">
-                    <h2 class="tech-title">C++</h2>
+                <div class="tech-card reveal">
+                    <img src="images/c++.png" alt="C++" class="tech-img">
+                    <h3 class="tech-title">C++</h3>
                 </div>
-
-                <div class="tech-card">
-                    <img src="images/unreal.png" alt="unreal" class="tech-img">
-                    <h2 class="tech-title">Unreal Engine</h2>
+                <div class="tech-card reveal">
+                    <img src="images/unreal.png" alt="Unreal Engine" class="tech-img">
+                    <h3 class="tech-title">Unreal Engine</h3>
                 </div>
-
-
             </div>
 
             <div class="tab-content" id="certificates">
-                    <div class="projects-card">
-                    <img src="images/certificate.png" alt="" class="project-img">
+                <div class="projects-card reveal">
+                    <img src="images/certificate.png" alt="CS50 certificate" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">CS50x: Introduction to Computer Science (Harvard University)</h3>
-                        <p class="project-details">An intensive, entry-level computer science course covering foundational topics such as algorithms, data structures, memory, web development, and more. The course emphasizes problem-solving and programming skills using C, Python, SQL, HTML/CSS, and JavaScript. Completed all assignments, labs, and the final project.</p>
+                        <p class="project-details">An intensive course covering algorithms, data structures, memory, and web development with C, Python, SQL, HTML/CSS, and JavaScript.</p>
                     </div>
                     <div class="project-buttons">
-                        <a href="https://courses.edx.org/certificates/33493257c49b46c496ba892ef3000d52?_gl=1*1p4lzvt*_gcl_au*MTA2Mzc5NjI5My4xNzU0MDU1OTk4*_ga*NjI5MzU0NTkuMTc1NDA1NTk5OA..*_ga_D3KS4KMDT0*czE3NTQwNTU5OTgkbzEkZzEkdDE3NTQwNTYwNDUkajE0JGwwJGgw" class="details" target="_blank">Details
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="18" width="18"><title>arrow-right</title><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-                        </a>
+                        <a href="https://courses.edx.org/certificates/33493257c49b46c496ba892ef3000d52?_gl=1*1p4lzvt*_gcl_au*MTA2Mzc5NjI5My4xNzU0MDU1OTk4*_ga*NjI5MzU0NTkuMTc1NDA1NTk5OA..*_ga_D3KS4KMDT0*czE3NTQwNTU5OTgkbzEkZzEkdDE3NTQwNTYwNDUkajE0JGwwJGgw" class="details" target="_blank" rel="noreferrer">View certificate</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="contact-section" id="contact">
-            <div class="portfolio-title">
-                <h2 class="title">Contact</h2>
-                <p class="info-text">If you have any questions or opportunities, feel free to reach out!</p>
+        <section class="contact" id="contact">
+            <div class="section-header reveal">
+                <p class="eyebrow">Contact</p>
+                <h2>Let's build something together</h2>
+                <p class="lede">If you have questions or opportunities, I'd love to connect.</p>
             </div>
-
-            <div class="contact-card">
-             <a href="mailto:yaytekin288@gmail.com" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24"                        ><title>email</title><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>yaytekin288@gmail.com</a>
-
-                <a href="https://www.linkedin.com/in/yunus-aytekin-153105223" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <title>LinkedIn</title>
-                        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
-                    </svg>LinkedIn</a>
-
-                    <a href="https://github.com/yunus103" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><title>github</title><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg>Github</a>
+            <div class="contact-card reveal">
+                <a href="mailto:yaytekin288@gmail.com" target="_blank" rel="noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24" aria-hidden="true"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
+                    yaytekin288@gmail.com
+                </a>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/yunus-aytekin-153105223" target="_blank" rel="noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/yunus103" target="_blank" rel="noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg>
+                        GitHub
+                    </a>
+                </div>
             </div>
-        </div>
-    </div>
-
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
