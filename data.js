@@ -4,7 +4,7 @@ const stats = [
   { label: 'Collaboration ready', value: 'Open' },
 ];
 
-const focusAreas = ['Design systems', 'Full-stack builds', 'Problem solving', 'Performance', 'Accessibility'];
+const focusAreas = ['Design systems', 'Frontend', 'Problem solving', 'Performance', 'Responsive Design'];
 
 const filters = ['all', 'featured', 'frontend', 'games', 'tools'];
 
