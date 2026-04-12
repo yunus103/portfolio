@@ -956,7 +956,10 @@ class App {
       alpha: true
     });
     this.renderer.setSize(initW, initH, false);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    
+    // Performance optimization: clamp pixel ratio on mobile
+    const pixelRatio = window.innerWidth <= 768 ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 2);
+    this.renderer.setPixelRatio(pixelRatio);
 
     this.composer = new EffectComposer(this.renderer);
     container.appendChild(this.renderer.domElement);
@@ -1049,24 +1052,39 @@ class App {
       })
     );
 
-    const smaaPass = new EffectPass(
-      this.camera,
-      new SMAAEffect({
-        preset: SMAAPreset.MEDIUM
-      })
-    );
-    this.renderPass.renderToScreen = false;
-    this.bloomPass.renderToScreen = false;
-    smaaPass.renderToScreen = true;
-
+    const isMobile = window.innerWidth <= 768;
+    
     this.composer.addPass(this.renderPass);
     this.composer.addPass(this.bloomPass);
-    this.composer.addPass(smaaPass);
+
+    if (!isMobile) {
+      const smaaPass = new EffectPass(
+        this.camera,
+        new SMAAEffect({
+          preset: SMAAPreset.MEDIUM
+        })
+      );
+      this.renderPass.renderToScreen = false;
+      this.bloomPass.renderToScreen = false;
+      smaaPass.renderToScreen = true;
+      this.composer.addPass(smaaPass);
+    } else {
+      this.renderPass.renderToScreen = false;
+      this.bloomPass.renderToScreen = true;
+    }
   }
 
   loadAssets(): Promise<void> {
     const assets = this.assets;
+    const isMobile = window.innerWidth <= 768;
+    
     return new Promise(resolve => {
+      // Mobile devices skip SMAA for instant load times
+      if (isMobile) {
+        resolve();
+        return;
+      }
+      
       const manager = new THREE.LoadingManager(resolve);
 
       const searchImage = new Image();
