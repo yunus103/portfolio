@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import { HiArrowDown } from 'react-icons/hi2'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/getDictionary'
+import type { Profile } from '@/sanity/queries'
 import { hyperspeedPresets } from '@/components/reactbits/Hyperspeed/HyperSpeedPresets'
 
 // Dynamic import — Hyperspeed uses WebGL/Canvas (browser-only APIs)
@@ -19,12 +20,13 @@ const Hyperspeed = dynamic(
 interface Props {
   locale: Locale
   dict: Dictionary
+  profile?: Profile | null
 }
 
 // Module-level constant — avoids unnecessary re-renders (as the component docs recommend)
 const HYPERSPEED_OPTIONS = hyperspeedPresets.four
 
-export default function Hero({ locale: _locale, dict }: Props) {
+export default function Hero({ locale, dict, profile }: Props) {
   // useMemo as an extra safety net if the component ever re-renders with dynamic options
   const effectOptions = useMemo(() => HYPERSPEED_OPTIONS, [])
 
@@ -69,7 +71,7 @@ export default function Hero({ locale: _locale, dict }: Props) {
 
         {/* Role / Tagline */}
         <p className="text-white/60 text-base sm:text-lg lg:text-xl font-light max-w-xl mt-2 mb-10 leading-relaxed">
-          {dict.hero.tagline}
+          {profile?.shortBio?.[locale] || profile?.shortBio?.en || dict.hero.tagline}
         </p>
 
         {/* CTA Buttons */}

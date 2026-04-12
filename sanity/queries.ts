@@ -69,10 +69,16 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
 // ─── Profile ───────────────────────────────────────────────────────────────────
 
 export interface Profile {
-  bio?: SanityLocalizedString
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  bio?: any
   shortBio?: SanityLocalizedString
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   profileImage?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cardAvatar?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cardIcon?: any
+  cardContactUrl?: string
   resumePdf?: { asset: { url: string } }
   yearsOfExperience?: number
   projectCount?: number
@@ -85,6 +91,9 @@ export async function getProfile(): Promise<Profile | null> {
       bio,
       shortBio,
       profileImage,
+      cardAvatar,
+      cardIcon,
+      cardContactUrl,
       "resumePdf": resumePdf{ "asset": asset->{ url } },
       yearsOfExperience,
       projectCount,

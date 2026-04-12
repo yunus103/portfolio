@@ -13,8 +13,8 @@ export const profileSchema = defineType({
       title: 'Bio (Long)',
       type: 'object',
       fields: [
-        { name: 'tr', type: 'text', title: 'Turkish', rows: 6 },
-        { name: 'en', type: 'text', title: 'English', rows: 6 },
+        { name: 'tr', type: 'array', title: 'Turkish', of: [{ type: 'block' }, { type: 'image' }] },
+        { name: 'en', type: 'array', title: 'English', of: [{ type: 'block' }, { type: 'image' }] },
       ],
     }),
     defineField({
@@ -31,6 +31,23 @@ export const profileSchema = defineType({
       title: 'Profile Photo',
       type: 'image',
       options: { hotspot: true },
+    }),
+    defineField({
+      name: 'cardAvatar',
+      title: 'Card Avatar (Image)',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'cardIcon',
+      title: 'Card Icon (Pattern)',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'cardContactUrl',
+      title: 'Card Contact URL',
+      type: 'url',
     }),
     defineField({
       name: 'resumePdf',
