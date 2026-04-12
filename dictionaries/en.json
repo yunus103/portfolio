@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "howIWork": "How I Work",
+    "downloadCV": "Download CV"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Yunus Emre Aytekin",
+    "tagline": "Full Stack Developer & Freelancer",
+    "cta": "View My Work",
+    "ctaSecondary": "Get In Touch"
+  },
+  "portfolio": {
+    "title": "Projects",
+    "subtitle": "My Work",
+    "liveDemo": "Live Demo",
+    "sourceCode": "Source Code",
+    "noProjects": "No projects added yet."
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Who Am I?"
+  },
+  "howIWork": {
+    "title": "How I Work",
+    "subtitle": "My Process"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's Talk",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message...",
+    "send": "Send"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Made with"
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}

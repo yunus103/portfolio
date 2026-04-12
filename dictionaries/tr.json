@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Anasayfa",
+    "projects": "Projeler",
+    "about": "Hakkımda",
+    "contact": "İletişim",
+    "howIWork": "Nasıl Çalışırım",
+    "downloadCV": "CV İndir"
+  },
+  "hero": {
+    "greeting": "Merhaba, Ben",
+    "name": "Yunus Emre Aytekin",
+    "tagline": "Full Stack Geliştirici & Freelancer",
+    "cta": "Projelerimi Gör",
+    "ctaSecondary": "İletişime Geç"
+  },
+  "portfolio": {
+    "title": "Projeler",
+    "subtitle": "Çalışmalarım",
+    "liveDemo": "Canlı Demo",
+    "sourceCode": "Kaynak Kod",
+    "noProjects": "Henüz proje eklenmemiş."
+  },
+  "about": {
+    "title": "Hakkımda",
+    "subtitle": "Ben Kimim?"
+  },
+  "howIWork": {
+    "title": "Nasıl Çalışırım",
+    "subtitle": "Sürecim"
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Konuşalım",
+    "namePlaceholder": "Adınız",
+    "emailPlaceholder": "E-posta adresiniz",
+    "messagePlaceholder": "Mesajınız...",
+    "send": "Gönder"
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır.",
+    "madeWith": "ile yapıldı"
+  },
+  "theme": {
+    "light": "Açık tema",
+    "dark": "Koyu tema"
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}
