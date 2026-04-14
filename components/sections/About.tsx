@@ -11,6 +11,7 @@ import ProfileCard from "@/components/reactbits/ProfileCard";
 import { RichText } from "@/components/ui/RichText";
 import LightRaysThemed from "@/components/reactbits/LightRaysThemed";
 import { FiDownload } from "react-icons/fi";
+import TargetCursor from "@/components/reactbits/TargetCursor";
 
 interface Props {
   locale: Locale;
@@ -60,7 +61,19 @@ export default async function About({ locale, dict }: Props) {
   }));
 
   return (
-    <section id="about" className="relative py-24 lg:py-32 overflow-hidden">
+    <section
+      id="about"
+      className="relative py-24 lg:py-32 overflow-hidden cursor-none"
+    >
+      <TargetCursor
+        containerSelector="#about"
+        targetSelector=".cursor-target"
+        spinDuration={2}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+        hoverDuration={0.2}
+      />
+
       {/* Background Lights */}
       <div className="absolute inset-0 pointer-events-none">
         <LightRaysThemed
@@ -168,7 +181,7 @@ export default async function About({ locale, dict }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   download
-                  className="about-cv-btn group/btn inline-flex items-center gap-3"
+                  className="about-cv-btn cursor-target group/btn inline-flex items-center gap-3"
                 >
                   <FiDownload className="w-[18px] h-[18px] transition-transform duration-300 group-hover/btn:-translate-y-0.5" />
                   <span className="font-medium text-sm sm:text-base tracking-wide">
@@ -186,7 +199,7 @@ export default async function About({ locale, dict }: Props) {
 
 function InfoPill({ icon, label }: { icon: string; label: string }) {
   return (
-    <div className="about-pill inline-flex items-center gap-2 sm:gap-2.5 cursor-default">
+    <div className="about-pill inline-flex items-center gap-2 sm:gap-2.5 cursor-default cursor-target">
       <span className="text-sm sm:text-base">{icon}</span>
       <span className="text-xs sm:text-sm">{label}</span>
     </div>
