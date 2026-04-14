@@ -1,52 +1,77 @@
-import type { Locale } from '@/i18n/config'
-import type { Dictionary } from '@/i18n/getDictionary'
-import { getProfile, getTechStack, getLocalizedValue } from '@/sanity/queries'
-import { urlForImage } from '@/sanity/lib/image'
-import ProfileCard from '@/components/reactbits/ProfileCard'
-import { RichText } from '@/components/ui/RichText'
-
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/getDictionary";
+import { getProfile, getTechStack, getLocalizedValue } from "@/sanity/queries";
+import { urlForImage } from "@/sanity/lib/image";
+import ProfileCard from "@/components/reactbits/ProfileCard";
+import { RichText } from "@/components/ui/RichText";
+import LightRaysThemed from "@/components/reactbits/LightRaysThemed";
 
 interface Props {
-  locale: Locale
-  dict: Dictionary
+  locale: Locale;
+  dict: Dictionary;
 }
 
 export default async function About({ locale, dict }: Props) {
-  const [profile, techStack] = await Promise.all([getProfile(), getTechStack()])
+  const [profile, techStack] = await Promise.all([
+    getProfile(),
+    getTechStack(),
+  ]);
 
   if (!profile) {
     return (
-      <section id="about" className="min-h-screen py-24 flex items-center justify-center">
+      <section
+        id="about"
+        className="min-h-screen py-24 flex items-center justify-center"
+      >
         <p className="text-foreground-muted text-sm">{dict.about.title}</p>
       </section>
-    )
+    );
   }
 
   // Get localized bio (Portable Text array)
-  const bio = profile.bio?.[locale] || profile.bio?.en
+  const bio = profile.bio?.[locale] || profile.bio?.en;
 
   // Get image URLs if available
   const avatarUrl = profile.cardAvatar
-    ? urlForImage(profile.cardAvatar)?.auto('format').url()
+    ? urlForImage(profile.cardAvatar)?.auto("format").url()
     : profile.profileImage
-      ? urlForImage(profile.profileImage)?.auto('format').url()
-      : undefined
+      ? urlForImage(profile.profileImage)?.auto("format").url()
+      : undefined;
 
-  const iconUrl = profile.cardIcon ? urlForImage(profile.cardIcon)?.url() : undefined
+  const iconUrl = profile.cardIcon
+    ? urlForImage(profile.cardIcon)?.url()
+    : undefined;
 
   // Prepare tech stack items with localized titles
   const techItems = techStack.map((item) => ({
     title: getLocalizedValue(item.title, locale),
     iconName: item.iconName,
     category: item.category,
-  }))
+  }));
 
   return (
     <section id="about" className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background Lights */}
+      <div className="absolute inset-0 pointer-events-none">
+        <LightRaysThemed
+          raysOrigin="top-center"
+          raysSpeed={0.2}
+          lightSpread={0.3}
+          rayLength={3}
+          followMouse={true}
+          mouseInfluence={0.5}
+          noiseAmount={0}
+          distortion={0}
+          pulsating={false}
+          fadeDistance={1}
+          saturation={1}
+          darkColor="#ffffff"
+          lightColor="#6366f1"
+        />
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 lg:mb-20">
           <p className="text-sm font-medium tracking-[0.3em] uppercase text-purple-400/80 mb-3">
@@ -73,7 +98,9 @@ export default async function About({ locale, dict }: Props) {
                 showUserInfo={true}
                 enableTilt={true}
                 enableMobileTilt={true}
-                contactUrl={profile.cardContactUrl || 'https://github.com/yunus103'}
+                contactUrl={
+                  profile.cardContactUrl || "https://github.com/yunus103"
+                }
                 behindGlowColor="rgba(125, 190, 255, 0.67)"
                 iconUrl={iconUrl}
                 behindGlowEnabled={true}
@@ -105,12 +132,13 @@ export default async function About({ locale, dict }: Props) {
                   )
                 ) : (
                   <div className="text-base sm:text-lg leading-relaxed text-white/70">
-                    {profile.shortBio?.[locale] || profile.shortBio?.en || dict.about.title}
+                    {profile.shortBio?.[locale] ||
+                      profile.shortBio?.en ||
+                      dict.about.title}
                   </div>
                 )}
               </div>
             </div>
-
 
             {/* Quick Info Pills */}
             <div className="flex flex-wrap gap-3">
@@ -123,7 +151,7 @@ export default async function About({ locale, dict }: Props) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function InfoPill({ icon, label }: { icon: string; label: string }) {
@@ -132,5 +160,5 @@ function InfoPill({ icon, label }: { icon: string; label: string }) {
       <span>{icon}</span>
       <span>{label}</span>
     </div>
-  )
+  );
 }
