@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/getDictionary'
 import { getProfile, getTechStack, getLocalizedValue } from '@/sanity/queries'
 import { urlForImage } from '@/sanity/lib/image'
-import ProfileCard from '@/components/reactbits/Hyperspeed/ProfileCard'
+import ProfileCard from '@/components/reactbits/ProfileCard'
 import { RichText } from '@/components/ui/RichText'
 
 
@@ -111,15 +111,6 @@ export default async function About({ locale, dict }: Props) {
               </div>
             </div>
 
-            {/* Tech Stack Section */}
-            {techItems.length > 0 && (
-              <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm p-8 sm:p-10 overflow-hidden">
-                <h3 className="text-sm font-medium tracking-[0.2em] uppercase text-white/40 mb-6">
-                  Tech Stack
-                </h3>
-                <TechMarquee items={techItems} />
-              </div>
-            )}
 
             {/* Quick Info Pills */}
             <div className="flex flex-wrap gap-3">

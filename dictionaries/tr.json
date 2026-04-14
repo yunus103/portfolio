@@ -48,5 +48,11 @@
   "language": {
     "tr": "Türkçe",
     "en": "English"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    "backToHome": "Anasayfaya Dön",
+    "contact": "İletişime Geç"
   }
 }
