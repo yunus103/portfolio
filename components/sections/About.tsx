@@ -1,10 +1,16 @@
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
-import { getProfile, getTechStack, getLocalizedValue } from "@/sanity/queries";
+import {
+  getProfile,
+  getTechStack,
+  getSiteSettings,
+  getLocalizedValue,
+} from "@/sanity/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import ProfileCard from "@/components/reactbits/ProfileCard";
 import { RichText } from "@/components/ui/RichText";
 import LightRaysThemed from "@/components/reactbits/LightRaysThemed";
+import { FiDownload } from "react-icons/fi";
 
 interface Props {
   locale: Locale;
@@ -12,9 +18,10 @@ interface Props {
 }
 
 export default async function About({ locale, dict }: Props) {
-  const [profile, techStack] = await Promise.all([
+  const [profile, techStack, siteSettings] = await Promise.all([
     getProfile(),
     getTechStack(),
+    getSiteSettings(),
   ]);
 
   if (!profile) {
@@ -30,6 +37,9 @@ export default async function About({ locale, dict }: Props) {
 
   // Get localized bio (Portable Text array)
   const bio = profile.bio?.[locale] || profile.bio?.en;
+
+  // CV URL from site settings
+  const cvUrl = siteSettings?.cvPdf?.asset?.url;
 
   // Get image URLs if available
   const avatarUrl = profile.cardAvatar
@@ -55,7 +65,7 @@ export default async function About({ locale, dict }: Props) {
       <div className="absolute inset-0 pointer-events-none">
         <LightRaysThemed
           raysOrigin="top-center"
-          raysSpeed={0.2}
+          raysSpeed={0}
           lightSpread={0.3}
           rayLength={3}
           followMouse={true}
@@ -70,17 +80,19 @@ export default async function About({ locale, dict }: Props) {
         />
       </div>
 
+      {/* Background Noise Texture */}
+      <div className="noise-overlay" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 lg:mb-20">
-          <p className="text-sm font-medium tracking-[0.3em] uppercase text-purple-400/80 mb-3">
+          <p className="text-sm font-medium tracking-[0.3em] uppercase text-primary/80 mb-3">
             {dict.about.subtitle}
           </p>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
             {dict.about.title}
           </h2>
-          <div className="mt-4 h-px w-16 bg-gradient-to-r from-purple-500 to-cyan-500" />
+          <div className="mt-4 h-px w-16 bg-gradient-to-r from-primary to-accent" />
         </div>
 
         {/* Main Grid */}
@@ -113,9 +125,9 @@ export default async function About({ locale, dict }: Props) {
           {/* Content — right column (3/5) */}
           <div className="lg:col-span-3 flex flex-col gap-8">
             {/* Bio Card */}
-            <div className="relative group rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm p-8 sm:p-10 overflow-hidden">
+            <div className="about-card relative group overflow-hidden">
               {/* Card inner glow on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-purple-500/[0.03] via-transparent to-cyan-500/[0.03] pointer-events-none" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-primary/[0.04] via-transparent to-accent/[0.04] pointer-events-none" />
 
               {/* Bio content from Sanity */}
               <div className="relative">
@@ -123,15 +135,15 @@ export default async function About({ locale, dict }: Props) {
                   Array.isArray(bio) ? (
                     <RichText
                       value={bio}
-                      className="!prose-base sm:!prose-lg !text-white/70 prose-headings:text-white prose-strong:text-white/90 prose-a:text-purple-400 hover:prose-a:text-purple-300 prose-p:leading-relaxed"
+                      className="!prose-base sm:!prose-lg prose-p:leading-relaxed"
                     />
                   ) : (
-                    <div className="text-base sm:text-lg leading-relaxed text-white/70 whitespace-pre-line">
+                    <div className="text-base sm:text-lg leading-relaxed text-foreground-muted dark:text-white/70 whitespace-pre-line">
                       {bio}
                     </div>
                   )
                 ) : (
-                  <div className="text-base sm:text-lg leading-relaxed text-white/70">
+                  <div className="text-base sm:text-lg leading-relaxed text-foreground-muted dark:text-white/70">
                     {profile.shortBio?.[locale] ||
                       profile.shortBio?.en ||
                       dict.about.title}
@@ -141,12 +153,30 @@ export default async function About({ locale, dict }: Props) {
             </div>
 
             {/* Quick Info Pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3">
               <InfoPill icon="📍" label="İstanbul, Türkiye" />
               <InfoPill icon="🎓" label="İstanbul Üniversitesi-Cerrahpaşa" />
               <InfoPill icon="💼" label="Freelance" />
               <InfoPill icon="🌐" label="TR / EN" />
             </div>
+
+            {/* CV Download Button */}
+            {cvUrl && (
+              <div className="pt-2">
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="about-cv-btn group/btn inline-flex items-center gap-3"
+                >
+                  <FiDownload className="w-[18px] h-[18px] transition-transform duration-300 group-hover/btn:-translate-y-0.5" />
+                  <span className="font-medium text-sm sm:text-base tracking-wide">
+                    {dict.nav.downloadCV}
+                  </span>
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -156,9 +186,9 @@ export default async function About({ locale, dict }: Props) {
 
 function InfoPill({ icon, label }: { icon: string; label: string }) {
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-white/50 text-sm font-light hover:border-white/[0.15] hover:text-white/70 transition-all duration-300 cursor-default">
-      <span>{icon}</span>
-      <span>{label}</span>
+    <div className="about-pill inline-flex items-center gap-2 sm:gap-2.5 cursor-default">
+      <span className="text-sm sm:text-base">{icon}</span>
+      <span className="text-xs sm:text-sm">{label}</span>
     </div>
   );
 }

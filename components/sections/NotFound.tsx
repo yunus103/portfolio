@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import FuzzyText from '@/components/reactbits/FuzzyText'
 import CustomButton from '@/components/ui/CustomButton'
 import { Dictionary } from '@/i18n/getDictionary'
@@ -14,12 +13,11 @@ interface NotFoundProps {
 }
 
 export default function NotFoundComponent({ dict }: NotFoundProps) {
-  const { theme } = useTheme()
   const params = useParams()
   const locale = (params?.locale as Locale) || 'tr'
-
-  // Determine color based on theme
-  const textColor = theme === 'light' ? '#1a1a1a' : '#ffffff'
+  
+  // Always use white for the fuzzy text in dark mode
+  const textColor = '#ffffff'
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">

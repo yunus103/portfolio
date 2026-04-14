@@ -16,7 +16,6 @@ const components: PortableTextComponents = {
         "50": "w-full md:w-1/2",
         "75": "w-full md:w-3/4",
         "100": "w-full",
-        // Fallback for old values
         half: "w-full md:w-1/2",
         large: "w-full md:w-3/4",
         full: "w-full",
@@ -75,7 +74,21 @@ const components: PortableTextComponents = {
 export function RichText({ value, className = "" }: { value: any[]; className?: string }) {
   if (!value) return null;
   return (
-    <div className={`prose prose-lg max-w-none dark:prose-invert break-words flow-root ${className}`}>
+    <div className={`prose prose-lg max-w-none break-words flow-root
+      /* Dark Theme Default */
+      prose-p:text-[rgba(255,255,255,0.7)] prose-p:leading-relaxed
+      prose-headings:text-white
+      prose-strong:text-[rgba(255,255,255,0.9)] prose-strong:font-semibold
+      prose-a:text-purple-400 hover:prose-a:text-purple-300 prose-a:transition-colors
+      prose-li:text-[rgba(255,255,255,0.7)]
+      prose-blockquote:text-[rgba(255,255,255,0.7)] prose-blockquote:border-purple-500/40
+      
+      /* Light Theme (Saklandı)
+      prose-p:text-foreground-muted
+      prose-headings:text-foreground
+      prose-a:text-primary hover:prose-a:text-primary-hover
+      */
+      ${className}`}>
       <PortableText value={value} components={components} />
     </div>
   );

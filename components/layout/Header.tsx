@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { HiBars3, HiXMark } from 'react-icons/hi2'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/getDictionary'
-import ThemeToggle from '@/components/ui/ThemeToggle'
 import LangSwitcher from '@/components/ui/LangSwitcher'
 
 interface Props {
@@ -82,7 +81,6 @@ export default function Header({ locale, dict }: Props) {
             {/* Lang + theme — always visible on md+, hidden on mobile (in drawer instead) */}
             <div className="hidden md:flex items-center gap-2">
               <LangSwitcher locale={locale} />
-              <ThemeToggle />
             </div>
 
             {/* Hamburger — mobile only */}
@@ -132,7 +130,6 @@ export default function Header({ locale, dict }: Props) {
           {/* Lang + Theme in mobile drawer */}
           <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
             <LangSwitcher locale={locale} />
-            <ThemeToggle />
           </div>
         </div>
       </div>
