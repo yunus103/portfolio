@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import dynamic from 'next/dynamic'
-import { useMemo } from 'react'
-import { HiArrowDown } from 'react-icons/hi2'
-import type { Locale } from '@/i18n/config'
-import type { Dictionary } from '@/i18n/getDictionary'
-import type { Profile } from '@/sanity/queries'
-import { hyperspeedPresets } from '@/components/reactbits/Hyperspeed/HyperSpeedPresets'
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
+import { HiArrowDown } from "react-icons/hi2";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/getDictionary";
+import type { Profile } from "@/sanity/queries";
+import { hyperspeedPresets } from "@/components/reactbits/Hyperspeed/HyperSpeedPresets";
 
 // Dynamic import — Hyperspeed uses WebGL/Canvas (browser-only APIs)
 const Hyperspeed = dynamic(
-  () => import('@/components/reactbits/Hyperspeed/Hyperspeed'),
+  () => import("@/components/reactbits/Hyperspeed/Hyperspeed"),
   {
     ssr: false,
     loading: () => <div className="absolute inset-0 bg-black" />,
-  }
-)
+  },
+);
 
 interface Props {
-  locale: Locale
-  dict: Dictionary
-  profile?: Profile | null
+  locale: Locale;
+  dict: Dictionary;
+  profile?: Profile | null;
 }
 
 // Module-level constant — avoids unnecessary re-renders (as the component docs recommend)
-const HYPERSPEED_OPTIONS = hyperspeedPresets.four
+const HYPERSPEED_OPTIONS = hyperspeedPresets.one;
 
 export default function Hero({ locale, dict, profile }: Props) {
   // useMemo as an extra safety net if the component ever re-renders with dynamic options
-  const effectOptions = useMemo(() => HYPERSPEED_OPTIONS, [])
+  const effectOptions = useMemo(() => HYPERSPEED_OPTIONS, []);
 
   return (
     <section
@@ -48,7 +48,6 @@ export default function Hero({ locale, dict, profile }: Props) {
 
       {/* ── Hero Content ─────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto select-none">
-
         {/* Availability badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/70 text-xs font-medium mb-8 tracking-wider uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -71,7 +70,9 @@ export default function Hero({ locale, dict, profile }: Props) {
 
         {/* Role / Tagline */}
         <p className="text-white/60 text-base sm:text-lg lg:text-xl font-light max-w-xl mt-2 mb-10 leading-relaxed">
-          {profile?.shortBio?.[locale] || profile?.shortBio?.en || dict.hero.tagline}
+          {profile?.shortBio?.[locale] ||
+            profile?.shortBio?.en ||
+            dict.hero.tagline}
         </p>
 
         {/* CTA Buttons */}
@@ -90,11 +91,12 @@ export default function Hero({ locale, dict, profile }: Props) {
           </a>
         </div>
 
-        {/* Click hint */}
+        {/* Speed-up hint */}
         <p className="text-white/20 text-xs mt-10 tracking-widest uppercase">
           Hızlanmak için bas &amp; tut
         </p>
-      </div>
+
+        </div>
 
       {/* ── Scroll indicator ─────────────────────────────────────── */}
       <a
@@ -105,5 +107,5 @@ export default function Hero({ locale, dict, profile }: Props) {
         <HiArrowDown className="w-5 h-5 animate-bounce" />
       </a>
     </section>
-  )
+  );
 }

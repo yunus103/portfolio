@@ -936,6 +936,7 @@ class App {
   speedUp: number;
   timeOffset: number;
   hasValidSize: boolean;
+  isTouching: boolean;
 
   constructor(container: HTMLElement, options: HyperspeedOptions) {
     this.options = options;
@@ -953,13 +954,13 @@ class App {
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: false,
-      alpha: true
+      alpha: true,
+      powerPreference: 'high-performance'
     });
     this.renderer.setSize(initW, initH, false);
-    
-    // Performance optimization: clamp pixel ratio on mobile
-    const pixelRatio = window.innerWidth <= 768 ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 2);
-    this.renderer.setPixelRatio(pixelRatio);
+    // Cap at 2× DPR on all devices — same as ReactBits default, good quality/perf balance
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.domElement.style.display = 'block';
 
     this.composer = new EffectComposer(this.renderer);
     container.appendChild(this.renderer.domElement);
@@ -1006,6 +1007,7 @@ class App {
     this.speedUpTarget = 0;
     this.speedUp = 0;
     this.timeOffset = 0;
+    this.isTouching = false;
 
     this.tick = this.tick.bind(this);
     this.init = this.init.bind(this);
@@ -1042,6 +1044,9 @@ class App {
   }
 
   initPasses() {
+    // Single render pipeline for all devices.
+    // SMAA asset URLs are inline data URLs (embedded in the postprocessing library),
+    // so there is zero network cost — they load instantly on mobile too.
     this.renderPass = new RenderPass(this.scene, this.camera);
     this.bloomPass = new EffectPass(
       this.camera,
@@ -1051,59 +1056,39 @@ class App {
         resolutionScale: 1
       })
     );
-
-    const isMobile = window.innerWidth <= 768;
-    
+    const smaaPass = new EffectPass(
+      this.camera,
+      new SMAAEffect({
+        preset: SMAAPreset.MEDIUM
+      })
+    );
+    this.renderPass.renderToScreen = false;
+    this.bloomPass.renderToScreen = false;
+    smaaPass.renderToScreen = true;
     this.composer.addPass(this.renderPass);
     this.composer.addPass(this.bloomPass);
-
-    if (!isMobile) {
-      const smaaPass = new EffectPass(
-        this.camera,
-        new SMAAEffect({
-          preset: SMAAPreset.MEDIUM
-        })
-      );
-      this.renderPass.renderToScreen = false;
-      this.bloomPass.renderToScreen = false;
-      smaaPass.renderToScreen = true;
-      this.composer.addPass(smaaPass);
-    } else {
-      this.renderPass.renderToScreen = false;
-      this.bloomPass.renderToScreen = true;
-    }
+    this.composer.addPass(smaaPass);
   }
 
   loadAssets(): Promise<void> {
     const assets = this.assets;
-    const isMobile = window.innerWidth <= 768;
-    
+    // SMAA uses inline data URLs baked into the postprocessing library.
+    // These resolve instantly — no network requests, safe to use on mobile.
     return new Promise(resolve => {
-      // Mobile devices skip SMAA for instant load times
-      if (isMobile) {
-        resolve();
-        return;
-      }
-      
       const manager = new THREE.LoadingManager(resolve);
-
       const searchImage = new Image();
       const areaImage = new Image();
       assets.smaa = {};
-
       searchImage.addEventListener('load', function () {
         assets.smaa.search = this;
         manager.itemEnd('smaa-search');
       });
-
       areaImage.addEventListener('load', function () {
         assets.smaa.area = this;
         manager.itemEnd('smaa-area');
       });
-
       manager.itemStart('smaa-search');
       manager.itemStart('smaa-area');
-
       searchImage.src = SMAAEffect.searchImageDataURL;
       areaImage.src = SMAAEffect.areaImageDataURL;
     });
@@ -1127,6 +1112,8 @@ class App {
     this.container.addEventListener('mouseup', this.onMouseUp);
     this.container.addEventListener('mouseout', this.onMouseUp);
 
+    // Touch speed-up: pressing triggers hyperspeed effect.
+    // contextmenu prevents the native long-press popup on Android/iOS.
     this.container.addEventListener('touchstart', this.onTouchStart, { passive: true });
     this.container.addEventListener('touchend', this.onTouchEnd, { passive: true });
     this.container.addEventListener('touchcancel', this.onTouchEnd, { passive: true });
@@ -1150,19 +1137,25 @@ class App {
   }
 
   onTouchStart(ev: TouchEvent) {
+    this.isTouching = true;
     if (this.options.onSpeedUp) this.options.onSpeedUp(ev);
     this.fovTarget = this.options.fovSpeedUp;
     this.speedUpTarget = this.options.speedUp;
   }
 
   onTouchEnd(ev: TouchEvent) {
+    this.isTouching = false;
     if (this.options.onSlowDown) this.options.onSlowDown(ev);
     this.fovTarget = this.options.fov;
     this.speedUpTarget = 0;
   }
 
   onContextMenu(ev: MouseEvent) {
-    // Allow default context menu
+    // Only block the context menu popup when triggered by a touch hold (mobile).
+    // Desktop right-click is left untouched.
+    if (this.isTouching) {
+      ev.preventDefault();
+    }
   }
 
   update(delta: number) {
@@ -1241,7 +1234,6 @@ class App {
       this.container.removeEventListener('mousedown', this.onMouseDown);
       this.container.removeEventListener('mouseup', this.onMouseUp);
       this.container.removeEventListener('mouseout', this.onMouseUp);
-
       this.container.removeEventListener('touchstart', this.onTouchStart);
       this.container.removeEventListener('touchend', this.onTouchEnd);
       this.container.removeEventListener('touchcancel', this.onTouchEnd);
@@ -1321,7 +1313,9 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = DEFAULT_EFFECT_OPTION
 
     const myApp = new App(container, options);
     appRef.current = myApp;
-    myApp.loadAssets().then(myApp.init);
+    // IMPORTANT: must use arrow function, not `.then(myApp.init)`, to preserve `this` context.
+    // `.then(myApp.init)` silently fails — init() runs with `this = undefined` in strict mode.
+    myApp.loadAssets().then(() => myApp.init());
 
     return () => {
       if (appRef.current) {
@@ -1330,7 +1324,13 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = DEFAULT_EFFECT_OPTION
     };
   }, [effectOptions]);
 
-  return <div id="lights" className="w-full h-full" ref={hyperspeed}></div>;
+  return (
+    <div
+      id="lights"
+      style={{ width: '100%', height: '100%' }}
+      ref={hyperspeed}
+    />
+  );
 };
 
 export default Hyperspeed;
