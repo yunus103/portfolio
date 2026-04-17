@@ -1,19 +1,25 @@
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/getDictionary'
 import DotField from '@/components/reactbits/DotField'
+import { PortfolioClient } from '@/components/sections/PortfolioClient'
+import { getProjects } from '@/sanity/queries'
 
 interface Props {
   locale: Locale
   dict: Dictionary
 }
 
-export default function Portfolio({ locale: _locale, dict }: Props) {
+export default async function Portfolio({ locale, dict }: Props) {
+  const projects = await getProjects()
+
   return (
     <section
       id="portfolio"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="relative overflow-hidden"
+      style={{ paddingTop: '6rem', paddingBottom: '6rem' }}
     >
-      <div className="absolute inset-0 z-0">
+      {/* ── DotField background ───────────────────────────────────── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <DotField
           dotRadius={1.5}
           dotSpacing={14}
@@ -23,14 +29,27 @@ export default function Portfolio({ locale: _locale, dict }: Props) {
           waveAmplitude={0}
         />
       </div>
-      
-      <div className="relative z-10 pointer-events-auto">
-        <p className="text-foreground-muted text-sm border border-white/10 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm">
-          {/* Portfolio Section — Phase 1 placeholder */}
-          {dict.portfolio.title}
-        </p>
+
+      {/* ── Subtle top/bottom fades ───────────────────────────────── */}
+      <div
+        className="absolute inset-x-0 top-0 h-32 pointer-events-none z-[1]"
+        style={{
+          background:
+            'linear-gradient(to bottom, var(--background), transparent)',
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-[1]"
+        style={{
+          background:
+            'linear-gradient(to top, var(--background), transparent)',
+        }}
+      />
+
+      {/* ── Content ───────────────────────────────────────────────── */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PortfolioClient projects={projects} locale={locale} dict={dict} />
       </div>
     </section>
   )
 }
-

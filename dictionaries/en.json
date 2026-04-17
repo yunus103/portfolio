@@ -15,8 +15,9 @@
     "ctaSecondary": "Get In Touch"
   },
   "portfolio": {
+    "badge": "My Work",
     "title": "Projects",
-    "subtitle": "My Work",
+    "subtitle": "A selection of projects I've designed and built.",
     "liveDemo": "Live Demo",
     "sourceCode": "Source Code",
     "noProjects": "No projects added yet."

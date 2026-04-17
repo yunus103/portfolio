@@ -15,8 +15,9 @@
     "ctaSecondary": "İletişime Geç"
   },
   "portfolio": {
+    "badge": "Projelerim",
     "title": "Projeler",
-    "subtitle": "Çalışmalarım",
+    "subtitle": "Tasarladığım ve geliştirdiğim projelerden seçkiler.",
     "liveDemo": "Canlı Demo",
     "sourceCode": "Kaynak Kod",
     "noProjects": "Henüz proje eklenmemiş."

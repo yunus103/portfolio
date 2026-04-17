@@ -125,7 +125,26 @@ export interface Project {
 
 export async function getProjects(): Promise<Project[]> {
   return client.fetch(
-    `*[_type == "project"] | order(order asc, _createdAt desc)`,
+    `*[_type == "project"] | order(order asc, _createdAt desc) {
+      _id,
+      title,
+      slug,
+      description,
+      "coverImage": coverImage {
+        ...,
+        asset->{ _id, _ref, metadata { lqip, dimensions } }
+      },
+      "images": images[] {
+        ...,
+        asset->{ _id, _ref, metadata { lqip, dimensions } }
+      },
+      techTags,
+      liveUrl,
+      githubUrl,
+      performanceScore,
+      featured,
+      order
+    }`,
     {},
     { next: { tags: ['projects'] } }
   )
