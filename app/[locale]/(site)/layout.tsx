@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { locales, defaultLocale, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/getDictionary'
 import { getSiteSettings, getLocalizedValue } from '@/sanity/queries'
@@ -78,6 +79,11 @@ export async function generateMetadata({
 export default async function SiteLayout({ children, params }: Props) {
   const { locale: rawLocale } = await params
   const locale = rawLocale as Locale
+
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
   const dict = await getDictionary(locale)
 
   return (

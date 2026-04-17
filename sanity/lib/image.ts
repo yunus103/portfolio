@@ -1,7 +1,7 @@
-import imageUrlBuilder from '@sanity/image-url'
+import { createImageUrlBuilder } from '@sanity/image-url'
 import { client } from '../client'
 
-const builder = imageUrlBuilder(client)
+const builder = createImageUrlBuilder(client)
 
 // Use inferred parameter type to avoid internal path imports (changed in v2)
 type SanityImageSource = Parameters<typeof builder.image>[0]

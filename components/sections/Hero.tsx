@@ -1,21 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
 import { HiArrowDown } from "react-icons/hi2";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import type { Profile } from "@/sanity/queries";
-import { hyperspeedPresets } from "@/components/reactbits/Hyperspeed/HyperSpeedPresets";
-
-// Dynamic import — Hyperspeed uses WebGL/Canvas (browser-only APIs)
-const Hyperspeed = dynamic(
-  () => import("@/components/reactbits/Hyperspeed/Hyperspeed"),
-  {
-    ssr: false,
-    loading: () => <div className="absolute inset-0 bg-black" />,
-  },
-);
 
 interface Props {
   locale: Locale;
@@ -23,27 +11,13 @@ interface Props {
   profile?: Profile | null;
 }
 
-// Module-level constant — avoids unnecessary re-renders (as the component docs recommend)
-const HYPERSPEED_OPTIONS = hyperspeedPresets.one;
-
 export default function Hero({ locale, dict, profile }: Props) {
-  // useMemo as an extra safety net if the component ever re-renders with dynamic options
-  const effectOptions = useMemo(() => HYPERSPEED_OPTIONS, []);
-
   return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* ── Full-screen Hyperspeed WebGL background ─────────────── */}
-      <div className="absolute inset-0">
-        <Hyperspeed effectOptions={effectOptions} />
-      </div>
-
-      {/* ── Top gradient: keeps header legible ───────────────────── */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
-
-      {/* ── Bottom gradient: smooth transition into next section (Dark mode only) ─── */}
+      {/* ── Bottom gradient: smooth transition into next section ─── */}
       <div className="absolute inset-x-0 bottom-0 h-48 hidden dark:block bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
       {/* ── Hero Content ─────────────────────────────────────────── */}
@@ -90,13 +64,7 @@ export default function Hero({ locale, dict, profile }: Props) {
             {dict.hero.ctaSecondary}
           </a>
         </div>
-
-        {/* Speed-up hint */}
-        <p className="text-white/20 text-xs mt-10 tracking-widest uppercase">
-          Hızlanmak için bas &amp; tut
-        </p>
-
-        </div>
+      </div>
 
       {/* ── Scroll indicator ─────────────────────────────────────── */}
       <a
