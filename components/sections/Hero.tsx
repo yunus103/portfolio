@@ -42,9 +42,9 @@ interface Props {
 
 export default function Hero({ locale, dict, profile }: Props) {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const cursorRef  = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const rafRef     = useRef<number>(0);
+  const mouseRef   = useRef({ x: -9999, y: -9999, inside: false });
 
   /* ── Starfield + meteors (Canvas 2D — no WebGL) ─────────────────── */
   useEffect(() => {
@@ -92,10 +92,74 @@ export default function Hero({ locale, dict, profile }: Props) {
 
     let t = 0;
 
+    /* Cursor sparks */
+    type Spark = { x: number; y: number; vx: number; vy: number; alpha: number; r: number };
+    const sparks: Spark[] = [];
+    const mouse = mouseRef.current;
+
     const draw = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       t += 0.016;
+
+      /* ── Cursor glow (drawn first, behind stars) ── */
+      if (!isMobile && mouse.inside) {
+        const g1 = ctx.createRadialGradient(
+          mouse.x, mouse.y, 0,
+          mouse.x, mouse.y, 220,
+        );
+        g1.addColorStop(0,    "rgba(139,92,246,0.18)");
+        g1.addColorStop(0.45, "rgba(99,102,241,0.09)");
+        g1.addColorStop(1,    "rgba(0,0,0,0)");
+        ctx.fillStyle = g1;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        /* Second ring — cyan accent */
+        const g2 = ctx.createRadialGradient(
+          mouse.x, mouse.y, 0,
+          mouse.x, mouse.y, 90,
+        );
+        g2.addColorStop(0,   "rgba(34,211,238,0.14)");
+        g2.addColorStop(0.6, "rgba(99,102,241,0.06)");
+        g2.addColorStop(1,   "rgba(0,0,0,0)");
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        /* Bright core dot */
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(200,180,255,0.7)";
+        ctx.fill();
+
+        /* Spawn sparks */
+        if (Math.random() > 0.35) {
+          sparks.push({
+            x:     mouse.x + (Math.random() - 0.5) * 18,
+            y:     mouse.y + (Math.random() - 0.5) * 18,
+            vx:    (Math.random() - 0.5) * 1.2,
+            vy:    -(Math.random() * 1.8 + 0.6),
+            alpha: Math.random() * 0.5 + 0.4,
+            r:     Math.random() * 1.6 + 0.4,
+          });
+        }
+      }
+
+      /* ── Draw + update sparks ── */
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy  += 0.04; // gentle gravity
+        s.alpha -= 0.022;
+        if (s.alpha <= 0) { sparks.splice(i, 1); continue; }
+
+        /* Purple → cyan color shift as spark fades */
+        const hue = 260 + (1 - s.alpha) * 70; // 260 violet → 330 cyan-ish
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${hue}, 90%, 75%, ${s.alpha})`;
+        ctx.fill();
+      }
 
       /* ── Twinkling stars ── */
       for (const s of stars) {
@@ -164,19 +228,25 @@ export default function Hero({ locale, dict, profile }: Props) {
     };
   }, []);
 
-  /* ── Cursor spotlight (desktop only) ────────────────────────────── */
+  /* ── Mouse tracking — updates mouseRef, no re-renders ───────────── */
   useEffect(() => {
     const section = sectionRef.current;
-    const cursor  = cursorRef.current;
-    if (!section || !cursor) return;
+    if (!section) return;
 
     const onMove = (e: MouseEvent) => {
       const r = section.getBoundingClientRect();
-      cursor.style.transform =
-        `translate(${e.clientX - r.left - 250}px, ${e.clientY - r.top - 250}px)`;
+      mouseRef.current.x      = e.clientX - r.left;
+      mouseRef.current.y      = e.clientY - r.top;
+      mouseRef.current.inside = true;
     };
+    const onLeave = () => { mouseRef.current.inside = false; };
+
     section.addEventListener("mousemove", onMove);
-    return () => section.removeEventListener("mousemove", onMove);
+    section.addEventListener("mouseleave", onLeave);
+    return () => {
+      section.removeEventListener("mousemove", onMove);
+      section.removeEventListener("mouseleave", onLeave);
+    };
   }, []);
 
   return (
@@ -273,17 +343,6 @@ export default function Hero({ locale, dict, profile }: Props) {
           }}
         />
 
-        {/* ── Mouse cursor spotlight (desktop) ─────────────────────── */}
-        <div
-          ref={cursorRef}
-          className="absolute w-[500px] h-[500px] rounded-full pointer-events-none hidden sm:block"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 68%)",
-            transition: "transform 0.12s ease-out",
-            willChange: "transform",
-          }}
-        />
 
         {/* ── Dark vignette ─────────────────────────────────────────── */}
         <div
