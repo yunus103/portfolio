@@ -1,32 +1,39 @@
-import type { Locale } from '@/i18n/config'
-import type { Dictionary } from '@/i18n/getDictionary'
-import DotField from '@/components/reactbits/DotField'
-import { PortfolioClient } from '@/components/sections/PortfolioClient'
-import { getProjects } from '@/sanity/queries'
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/getDictionary";
+import LightRaysThemed from "@/components/reactbits/LightRaysThemed";
+import { PortfolioClient } from "@/components/sections/PortfolioClient";
+import { getProjects } from "@/sanity/queries";
 
 interface Props {
-  locale: Locale
-  dict: Dictionary
+  locale: Locale;
+  dict: Dictionary;
 }
 
 export default async function Portfolio({ locale, dict }: Props) {
-  const projects = await getProjects()
+  const projects = await getProjects();
 
   return (
     <section
       id="portfolio"
       className="relative overflow-hidden"
-      style={{ paddingTop: '6rem', paddingBottom: '6rem' }}
+      style={{ paddingTop: "6rem", paddingBottom: "6rem" }}
     >
-      {/* ── DotField background ───────────────────────────────────── */}
+      {/* ── LightRays background ──────────────────────────────────── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <DotField
-          dotRadius={1.5}
-          dotSpacing={14}
-          bulgeStrength={67}
-          glowRadius={160}
-          sparkle={false}
-          waveAmplitude={0}
+        <LightRaysThemed
+          raysOrigin="top-center"
+          raysSpeed={0}
+          lightSpread={0.3}
+          rayLength={3}
+          followMouse={true}
+          mouseInfluence={1}
+          noiseAmount={0}
+          distortion={0}
+          pulsating={false}
+          fadeDistance={1}
+          saturation={1}
+          darkColor="#ffffff"
+          lightColor="#6366f1"
         />
       </div>
 
@@ -35,14 +42,13 @@ export default async function Portfolio({ locale, dict }: Props) {
         className="absolute inset-x-0 top-0 h-32 pointer-events-none z-[1]"
         style={{
           background:
-            'linear-gradient(to bottom, var(--background), transparent)',
+            "linear-gradient(to bottom, var(--background), transparent)",
         }}
       />
       <div
         className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-[1]"
         style={{
-          background:
-            'linear-gradient(to top, var(--background), transparent)',
+          background: "linear-gradient(to top, var(--background), transparent)",
         }}
       />
 
@@ -51,5 +57,5 @@ export default async function Portfolio({ locale, dict }: Props) {
         <PortfolioClient projects={projects} locale={locale} dict={dict} />
       </div>
     </section>
-  )
+  );
 }

@@ -9,7 +9,7 @@ import {
 import { urlForImage } from "@/sanity/lib/image";
 import ProfileCard from "@/components/reactbits/ProfileCard";
 import { RichText } from "@/components/ui/RichText";
-import LightRaysThemed from "@/components/reactbits/LightRaysThemed";
+import DotField from "@/components/reactbits/DotField";
 import { FiDownload } from "react-icons/fi";
 import TargetCursor from "@/components/reactbits/TargetCursor";
 
@@ -74,22 +74,15 @@ export default async function About({ locale, dict }: Props) {
         hoverDuration={0.2}
       />
 
-      {/* Background Lights */}
+      {/* Background DotField */}
       <div className="absolute inset-0 pointer-events-none">
-        <LightRaysThemed
-          raysOrigin="top-center"
-          raysSpeed={0}
-          lightSpread={0.3}
-          rayLength={3}
-          followMouse={true}
-          mouseInfluence={0.5}
-          noiseAmount={0}
-          distortion={0}
-          pulsating={false}
-          fadeDistance={1}
-          saturation={1}
-          darkColor="#ffffff"
-          lightColor="#6366f1"
+        <DotField
+          dotRadius={1.5}
+          dotSpacing={14}
+          bulgeStrength={67}
+          glowRadius={160}
+          sparkle={false}
+          waveAmplitude={0}
         />
       </div>
 
