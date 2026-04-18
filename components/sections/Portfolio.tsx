@@ -23,7 +23,7 @@ export default async function Portfolio({ locale, dict }: Props) {
         <LightRaysThemed
           raysOrigin="top-center"
           raysSpeed={0}
-          lightSpread={0.3}
+          lightSpread={0.1}
           rayLength={3}
           followMouse={true}
           mouseInfluence={1}
@@ -32,7 +32,7 @@ export default async function Portfolio({ locale, dict }: Props) {
           pulsating={false}
           fadeDistance={1}
           saturation={1}
-          darkColor="#ffffff"
+          darkColor="#6366f1"
           lightColor="#6366f1"
         />
       </div>
