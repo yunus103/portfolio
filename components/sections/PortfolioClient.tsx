@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, Suspense } from "react";
+import { createPortal } from "react-dom";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { SanityImage } from "@/components/ui/SanityImage";
 import type { Project } from "@/sanity/queries";
@@ -14,6 +15,7 @@ import {
   HiChevronRight,
 } from "react-icons/hi2";
 import { FiGithub } from "react-icons/fi";
+import { useLenis } from "lenis/react";
 
 /* ─── Injected styles ───────────────────────────────────────────────── */
 const STYLES = `
@@ -47,7 +49,7 @@ const STYLES = `
   .pf-img-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/2;
+    aspect-ratio: 2 / 1;
     overflow: hidden;
     background: #0b091a;
   }
@@ -165,6 +167,7 @@ const STYLES = `
     display: flex; align-items: center; justify-content: center;
     padding: 16px;
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .pf-modal-inner {
     position: relative; width: 100%; max-width: 1040px;
@@ -309,7 +312,7 @@ const STYLES = `
   /* Close button */
   .pf-close {
     position: absolute; top: 14px; right: 14px; z-index: 20;
-    width: 34px; height: 34px; border-radius: 50%;
+    width: 38px; height: 38px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
@@ -517,6 +520,17 @@ function Modal({
     [imgs.length],
   );
 
+  /* Fully stop Lenis globally while modal is open */
+  const lenis = useLenis();
+  useEffect(() => {
+    if (lenis) {
+      lenis.stop();
+    }
+    return () => {
+      if (lenis) lenis.start();
+    };
+  }, [lenis]);
+
   /* Keyboard */
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
@@ -530,24 +544,45 @@ function Modal({
 
   /* Body scroll lock */
   useEffect(() => {
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+    
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.touchAction = originalTouchAction;
     };
   }, []);
 
   /* Reset image when project changes */
   useEffect(() => setActive(0), [project._id]);
 
-  return (
+  /* Mount state for Portal */
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
+  return createPortal(
     <>
-      <div className="pf-overlay-bg" onClick={onClose} aria-hidden />
+      <div 
+        className="pf-overlay-bg" 
+        onClick={onClose} 
+        aria-hidden 
+        data-lenis-prevent="true"
+      />
       <div
         className="pf-modal"
         role="dialog"
         aria-modal="true"
         aria-label={title}
         onClick={(e) => e.target === e.currentTarget && onClose()}
+        data-lenis-prevent="true"
       >
         <div className="pf-modal-inner" ref={panelRef}>
           {/* Close */}
@@ -825,7 +860,8 @@ function Modal({
           {/* .pf-modal-body */}
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
 
@@ -929,8 +965,8 @@ function Inner({ projects, locale, dict }: Props) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+          gap: "28px",
         }}
       >
         {list.map((project, i) => (

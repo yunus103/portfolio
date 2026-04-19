@@ -53,7 +53,7 @@ export default async function Portfolio({ locale, dict }: Props) {
       />
 
       {/* ── Content ───────────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-8">
         <PortfolioClient projects={projects} locale={locale} dict={dict} />
       </div>
     </section>
