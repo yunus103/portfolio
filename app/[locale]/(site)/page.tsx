@@ -5,7 +5,7 @@ import Portfolio from '@/components/sections/Portfolio'
 import About from '@/components/sections/About'
 import HowIWork from '@/components/sections/HowIWork'
 import Contact from '@/components/sections/Contact'
-import { getProfile } from '@/sanity/queries'
+import { getProfile, getSiteSettings } from '@/sanity/queries'
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -14,9 +14,10 @@ interface Props {
 export default async function HomePage({ params }: Props) {
   const { locale: rawLocale } = await params
   const locale = rawLocale as Locale
-  const [dict, profile] = await Promise.all([
+  const [dict, profile, siteSettings] = await Promise.all([
     getDictionary(locale),
-    getProfile()
+    getProfile(),
+    getSiteSettings(),
   ])
 
   return (
@@ -25,7 +26,7 @@ export default async function HomePage({ params }: Props) {
       <Portfolio locale={locale} dict={dict} />
       <About locale={locale} dict={dict} />
       <HowIWork locale={locale} dict={dict} />
-      <Contact locale={locale} dict={dict} />
+      <Contact locale={locale} dict={dict} siteSettings={siteSettings} />
     </>
   )
 }
