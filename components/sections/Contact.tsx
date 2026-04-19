@@ -158,7 +158,7 @@ type SocialDef = {
   key: keyof SiteSettings;
   label: string;
   handle: string;
-  Icon: React.ComponentType<{ size?: number; className?: string }>;
+  Icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties; color?: string }>;
   accentColor: string;
   glowColor: string;
   gradientFrom: string;
