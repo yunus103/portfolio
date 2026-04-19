@@ -10,7 +10,13 @@ import { urlForImage } from "@/sanity/lib/image";
 import ProfileCard from "@/components/reactbits/ProfileCard";
 import { RichText } from "@/components/ui/RichText";
 import AboutBackground from "@/components/sections/AboutBackground";
-import { FiDownload, FiMapPin, FiBook, FiBriefcase, FiGlobe } from "react-icons/fi";
+import {
+  FiDownload,
+  FiMapPin,
+  FiBook,
+  FiBriefcase,
+  FiGlobe,
+} from "react-icons/fi";
 import type { IconType } from "react-icons";
 import {
   SiReact,
@@ -93,21 +99,27 @@ const ICON_MAP: Record<string, IconType> = {
 type TechItem = { title: string; iconName?: string; category: string };
 
 const FALLBACK_TECH: TechItem[] = [
-  { title: "React",        iconName: "react",        category: "frontend" },
-  { title: "Next.js",      iconName: "nextjs",       category: "frontend" },
-  { title: "TypeScript",   iconName: "typescript",   category: "frontend" },
-  { title: "Tailwind CSS", iconName: "tailwindcss",  category: "frontend" },
-  { title: "Node.js",      iconName: "nodejs",       category: "backend"  },
-  { title: "MongoDB",      iconName: "mongodb",      category: "database" },
-  { title: "PostgreSQL",   iconName: "postgresql",   category: "database" },
-  { title: "Git",          iconName: "git",          category: "tools"    },
-  { title: "Figma",        iconName: "figma",        category: "tools"    },
-  { title: "Vercel",       iconName: "vercel",       category: "tools"    },
-  { title: "Sanity",       iconName: "sanity",       category: "tools"    },
+  { title: "React", iconName: "react", category: "frontend" },
+  { title: "Next.js", iconName: "nextjs", category: "frontend" },
+  { title: "TypeScript", iconName: "typescript", category: "frontend" },
+  { title: "Tailwind CSS", iconName: "tailwindcss", category: "frontend" },
+  { title: "Node.js", iconName: "nodejs", category: "backend" },
+  { title: "MongoDB", iconName: "mongodb", category: "database" },
+  { title: "PostgreSQL", iconName: "postgresql", category: "database" },
+  { title: "Git", iconName: "git", category: "tools" },
+  { title: "Figma", iconName: "figma", category: "tools" },
+  { title: "Vercel", iconName: "vercel", category: "tools" },
+  { title: "Sanity", iconName: "sanity", category: "tools" },
 ];
 
 const CATEGORY_ORDER = [
-  "frontend","backend","database","tools","design","devops","other",
+  "frontend",
+  "backend",
+  "database",
+  "tools",
+  "design",
+  "devops",
+  "other",
 ];
 
 // ── Inline keyframes → injected once via <style> ────────────────────────────
@@ -140,7 +152,10 @@ const STYLES = `
 `;
 
 // ════════════════════════════════════════════════════════════════════════════
-interface Props { locale: Locale; dict: Dictionary; }
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
 
 export default async function About({ locale, dict }: Props) {
   const [profile, techStack, siteSettings] = await Promise.all([
@@ -151,14 +166,17 @@ export default async function About({ locale, dict }: Props) {
 
   if (!profile) {
     return (
-      <section id="about" className="min-h-[50vh] py-24 flex items-center justify-center">
+      <section
+        id="about"
+        className="min-h-[50vh] py-24 flex items-center justify-center"
+      >
         <p className="text-foreground-muted text-sm">{dict.about.title}</p>
       </section>
     );
   }
 
-  const bio    = profile.bio?.[locale] || profile.bio?.en;
-  const cvUrl  = siteSettings?.cvPdf?.asset?.url;
+  const bio = profile.bio?.[locale] || profile.bio?.en;
+  const cvUrl = siteSettings?.cvPdf?.asset?.url;
 
   const avatarUrl = profile.cardAvatar
     ? urlForImage(profile.cardAvatar)?.auto("format").url()
@@ -166,13 +184,15 @@ export default async function About({ locale, dict }: Props) {
       ? urlForImage(profile.profileImage)?.auto("format").url()
       : undefined;
 
-  const iconUrl = profile.cardIcon ? urlForImage(profile.cardIcon)?.url() : undefined;
+  const iconUrl = profile.cardIcon
+    ? urlForImage(profile.cardIcon)?.url()
+    : undefined;
 
   /* Tech items — use Sanity data if available, otherwise fallback */
   const techItems: TechItem[] =
     techStack.length > 0
       ? techStack.map((t) => ({
-          title:    getLocalizedValue(t.title, locale),
+          title: getLocalizedValue(t.title, locale),
           iconName: t.iconName,
           category: t.category?.toLowerCase() ?? "other",
         }))
@@ -186,7 +206,7 @@ export default async function About({ locale, dict }: Props) {
       acc[cat].push(item);
       return acc;
     },
-    {}
+    {},
   );
 
   const sortedCategories = Object.keys(techByCategory).sort((a, b) => {
@@ -213,8 +233,10 @@ export default async function About({ locale, dict }: Props) {
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: "75vw", height: "65vh",
-          top: "-20%", left: "-20%",
+          width: "75vw",
+          height: "65vh",
+          top: "-20%",
+          left: "-20%",
           background:
             "radial-gradient(ellipse, rgba(129,140,248,0.28) 0%, rgba(109,40,217,0.12) 42%, transparent 70%)",
           filter: "blur(60px)",
@@ -226,8 +248,10 @@ export default async function About({ locale, dict }: Props) {
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: "62vw", height: "52vh",
-          bottom: "-12%", right: "-15%",
+          width: "62vw",
+          height: "52vh",
+          bottom: "-12%",
+          right: "-15%",
           background:
             "radial-gradient(ellipse, rgba(167,139,250,0.22) 0%, rgba(139,92,246,0.09) 42%, transparent 70%)",
           filter: "blur(75px)",
@@ -255,17 +279,16 @@ export default async function About({ locale, dict }: Props) {
       {/*  CONTENT                                                        */}
       {/* ════════════════════════════════════════════════════════════════ */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-
         {/* ── SECTION HEADER ─────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 lg:mb-24 ab-animate ab-a1">
           <div>
-              <p className="text-[11px] font-semibold tracking-[0.32em] uppercase text-primary/60 mb-2">
-                {dict.about.subtitle}
-              </p>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                {dict.about.title}
-              </h2>
-              <div className="mt-3 h-px w-16 bg-gradient-to-r from-primary via-accent to-transparent" />
+            <p className="text-[11px] font-semibold tracking-[0.32em] uppercase text-primary/60 mb-2">
+              {dict.about.subtitle}
+            </p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              {dict.about.title}
+            </h2>
+            <div className="mt-3 h-px w-16 bg-gradient-to-r from-primary via-accent to-transparent" />
           </div>
 
           {/* Availability badge */}
@@ -277,7 +300,6 @@ export default async function About({ locale, dict }: Props) {
 
         {/* ── MAIN GRID ──────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
-
           {/* ── ProfileCard ──────────────────────────────────── */}
           {/* Mobile: straight & capped to 88vw. lg+: slight tilt. */}
           <div className="flex justify-center lg:col-span-5 lg:sticky lg:top-24 ab-animate ab-a2">
@@ -291,8 +313,10 @@ export default async function About({ locale, dict }: Props) {
                 avatarUrl={avatarUrl}
                 showUserInfo={true}
                 enableTilt={true}
-                enableMobileTilt={true}
-                contactUrl={profile.cardContactUrl || "https://github.com/yunus103"}
+                enableMobileTilt={false}
+                contactUrl={
+                  profile.cardContactUrl || "https://github.com/yunus103"
+                }
                 behindGlowColor="rgba(125, 190, 255, 0.67)"
                 iconUrl={iconUrl}
                 behindGlowEnabled={true}
@@ -304,7 +328,6 @@ export default async function About({ locale, dict }: Props) {
 
           {/* ── Text content ───────────────────────────────── */}
           <div className="lg:col-span-7 flex flex-col gap-8">
-
             {/* Large gradient name + subtitle */}
             <div className="ab-animate ab-a3">
               <h3
@@ -351,10 +374,16 @@ export default async function About({ locale, dict }: Props) {
 
             {/* Info pills */}
             <div className="flex flex-wrap gap-2 sm:gap-2.5 ab-animate ab-a4">
-              <InfoPill icon={<FiMapPin size={12} />} label="İstanbul, Türkiye" />
-              <InfoPill icon={<FiBook size={12} />}   label="İÜC Bilgisayar Müh." />
+              <InfoPill
+                icon={<FiMapPin size={12} />}
+                label="İstanbul, Türkiye"
+              />
+              <InfoPill
+                icon={<FiBook size={12} />}
+                label="İÜC Bilgisayar Müh."
+              />
               <InfoPill icon={<FiBriefcase size={12} />} label="Freelance" />
-              <InfoPill icon={<FiGlobe size={12} />}  label="TR / EN" />
+              <InfoPill icon={<FiGlobe size={12} />} label="TR / EN" />
             </div>
 
             {/* CV download */}
@@ -407,7 +436,12 @@ export default async function About({ locale, dict }: Props) {
                 >
                   {Icon && <Icon size={13} style={{ opacity: 0.55 }} />}
                   {item.title}
-                  <span style={{ marginLeft: "1.5rem", color: "rgba(255,255,255,0.08)" }}>
+                  <span
+                    style={{
+                      marginLeft: "1.5rem",
+                      color: "rgba(255,255,255,0.08)",
+                    }}
+                  >
                     ✦
                   </span>
                 </span>
@@ -415,7 +449,6 @@ export default async function About({ locale, dict }: Props) {
             })}
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -423,13 +456,7 @@ export default async function About({ locale, dict }: Props) {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function InfoPill({
-  icon,
-  label,
-}: {
-  icon: React.ReactNode;
-  label: string;
-}) {
+function InfoPill({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="about-pill inline-flex items-center gap-2 cursor-default">
       <span className="text-primary/60 flex-shrink-0">{icon}</span>
@@ -448,8 +475,10 @@ function TechGroup({
   const label = category.charAt(0).toUpperCase() + category.slice(1);
   return (
     <div>
-      <p className="text-[10px] font-semibold tracking-[0.22em] uppercase mb-2.5"
-         style={{ color: "rgba(255,255,255,0.25)" }}>
+      <p
+        className="text-[10px] font-semibold tracking-[0.22em] uppercase mb-2.5"
+        style={{ color: "rgba(255,255,255,0.25)" }}
+      >
         {label}
       </p>
       <div className="flex flex-wrap gap-1.5 sm:gap-2">
