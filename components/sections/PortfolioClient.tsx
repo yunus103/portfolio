@@ -7,7 +7,12 @@ import type { Project } from "@/sanity/queries";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/getDictionary";
 import { getLocalizedValue } from "@/sanity/queries";
-import { HiArrowTopRightOnSquare, HiXMark, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import {
+  HiArrowTopRightOnSquare,
+  HiXMark,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi2";
 import { FiGithub } from "react-icons/fi";
 
 /* ─── Injected styles ───────────────────────────────────────────────── */
@@ -377,7 +382,7 @@ function Card({
   onClick: () => void;
 }) {
   const title = getLocalizedValue(project.title, locale);
-  const desc  = getLocalizedValue(project.description, locale);
+  const desc = getLocalizedValue(project.description, locale);
   const hasCover = !!project.coverImage?.asset;
 
   return (
@@ -391,9 +396,7 @@ function Card({
       aria-label={`${title} — detayları gör`}
     >
       {/* Index number */}
-      <span className="pf-card-num">
-        {String(index + 1).padStart(2, "0")}
-      </span>
+      <span className="pf-card-num">{String(index + 1).padStart(2, "0")}</span>
 
       {/* Featured dot */}
       {project.featured && <span className="pf-featured-dot" aria-hidden />}
@@ -419,9 +422,17 @@ function Card({
               justifyContent: "center",
             }}
           >
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" aria-hidden>
-              <rect x="3" y="3" width="18" height="18" rx="3"/>
-              <path d="M3 9h18M9 21V9"/>
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="1.5"
+              aria-hidden
+            >
+              <rect x="3" y="3" width="18" height="18" rx="3" />
+              <path d="M3 9h18M9 21V9" />
             </svg>
           </div>
         )}
@@ -494,8 +505,8 @@ function Modal({
   onClose: () => void;
 }) {
   const title = getLocalizedValue(project.title, locale);
-  const desc  = getLocalizedValue(project.description, locale);
-  const imgs  = collectImages(project);
+  const desc = getLocalizedValue(project.description, locale);
+  const imgs = collectImages(project);
 
   const [active, setActive] = useState(0);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -510,7 +521,7 @@ function Modal({
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft")  prev();
+      if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     };
     window.addEventListener("keydown", fn);
@@ -520,7 +531,9 @@ function Modal({
   /* Body scroll lock */
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   /* Reset image when project changes */
@@ -539,7 +552,9 @@ function Modal({
         <div className="pf-modal-inner" ref={panelRef}>
           {/* Close */}
           <button className="pf-close" onClick={onClose} aria-label="Kapat">
-            <HiXMark style={{ width: 17, height: 17, color: "rgba(255,255,255,0.65)" }} />
+            <HiXMark
+              style={{ width: 17, height: 17, color: "rgba(255,255,255,0.65)" }}
+            />
           </button>
 
           <div className="pf-modal-body">
@@ -557,30 +572,55 @@ function Modal({
                 ) : (
                   <div
                     style={{
-                      width: "100%", height: "100%", display: "flex",
-                      alignItems: "center", justifyContent: "center",
-                      background: "radial-gradient(ellipse at center, rgba(124,58,237,0.07) 0%, transparent 70%)",
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      background:
+                        "radial-gradient(ellipse at center, rgba(124,58,237,0.07) 0%, transparent 70%)",
                     }}
                   >
-                    <span style={{ fontSize: "3rem", color: "rgba(255,255,255,0.06)" }}>✦</span>
+                    <span
+                      style={{
+                        fontSize: "3rem",
+                        color: "rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      ✦
+                    </span>
                   </div>
                 )}
 
                 {/* Arrows */}
                 {active > 0 && (
-                  <button className="pf-arrow pf-arrow-left" onClick={prev} aria-label="Önceki">
-                    <HiChevronLeft style={{ width: 18, height: 18, color: "#fff" }} />
+                  <button
+                    className="pf-arrow pf-arrow-left"
+                    onClick={prev}
+                    aria-label="Önceki"
+                  >
+                    <HiChevronLeft
+                      style={{ width: 18, height: 18, color: "#fff" }}
+                    />
                   </button>
                 )}
                 {active < imgs.length - 1 && (
-                  <button className="pf-arrow pf-arrow-right" onClick={next} aria-label="Sonraki">
-                    <HiChevronRight style={{ width: 18, height: 18, color: "#fff" }} />
+                  <button
+                    className="pf-arrow pf-arrow-right"
+                    onClick={next}
+                    aria-label="Sonraki"
+                  >
+                    <HiChevronRight
+                      style={{ width: 18, height: 18, color: "#fff" }}
+                    />
                   </button>
                 )}
 
                 {/* Count badge */}
                 {imgs.length > 1 && (
-                  <span className="pf-img-count">{active + 1} / {imgs.length}</span>
+                  <span className="pf-img-count">
+                    {active + 1} / {imgs.length}
+                  </span>
                 )}
               </div>
 
@@ -629,10 +669,13 @@ function Modal({
               {project.featured && (
                 <span
                   style={{
-                    fontSize: "0.65rem", fontWeight: 700,
-                    letterSpacing: "0.12em", textTransform: "uppercase",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
                     color: "rgba(167,139,250,0.6)",
-                    marginBottom: 10, display: "block",
+                    marginBottom: 10,
+                    display: "block",
                   }}
                 >
                   ★ Öne Çıkan Proje
@@ -642,9 +685,12 @@ function Modal({
               {/* Title */}
               <h2
                 style={{
-                  fontSize: "1.35rem", fontWeight: 800,
-                  color: "#fff", lineHeight: 1.25,
-                  letterSpacing: "-0.02em", margin: "0 0 6px",
+                  fontSize: "1.35rem",
+                  fontWeight: 800,
+                  color: "#fff",
+                  lineHeight: 1.25,
+                  letterSpacing: "-0.02em",
+                  margin: "0 0 6px",
                 }}
               >
                 {title}
@@ -653,7 +699,9 @@ function Modal({
               {/* Subtle accent line */}
               <div
                 style={{
-                  height: 2, width: 36, borderRadius: 99,
+                  height: 2,
+                  width: 36,
+                  borderRadius: 99,
                   background: "linear-gradient(90deg, #7c3aed, #22d3ee)",
                   marginBottom: 20,
                 }}
@@ -664,16 +712,20 @@ function Modal({
                 <>
                   <p
                     style={{
-                      fontSize: "0.68rem", fontWeight: 700,
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
                       color: "rgba(255,255,255,0.3)",
-                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
                       margin: "0 0 10px",
                     }}
                   >
                     Tech Stack
                   </p>
                   <div className="pf-tags-wrap" style={{ marginBottom: 20 }}>
-                    {project.techTags.map((t) => <Tag key={t} label={t} />)}
+                    {project.techTags.map((t) => (
+                      <Tag key={t} label={t} />
+                    ))}
                   </div>
                 </>
               )}
@@ -681,7 +733,9 @@ function Modal({
               <hr className="pf-sidebar-sep" />
 
               {/* Action buttons */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 10 }}
+              >
                 {project.liveUrl ? (
                   <a
                     href={project.liveUrl}
@@ -689,12 +743,20 @@ function Modal({
                     rel="noopener noreferrer"
                     className="pf-btn pf-btn-primary"
                   >
-                    <HiArrowTopRightOnSquare style={{ width: 16, height: 16 }} />
+                    <HiArrowTopRightOnSquare
+                      style={{ width: 16, height: 16 }}
+                    />
                     Canlı Siteyi Gör
                   </a>
                 ) : (
-                  <button className="pf-btn pf-btn-primary" disabled style={{ opacity: 0.35, cursor: "default" }}>
-                    <HiArrowTopRightOnSquare style={{ width: 16, height: 16 }} />
+                  <button
+                    className="pf-btn pf-btn-primary"
+                    disabled
+                    style={{ opacity: 0.35, cursor: "default" }}
+                  >
+                    <HiArrowTopRightOnSquare
+                      style={{ width: 16, height: 16 }}
+                    />
                     Canlı Site Yok
                   </button>
                 )}
@@ -719,7 +781,13 @@ function Modal({
                   <>
                     <div className="pf-stat">
                       <span className="pf-stat-label">Performance</span>
-                      <span className="pf-stat-val" style={{ color: "rgba(167,139,250,0.9)", fontWeight: 700 }}>
+                      <span
+                        className="pf-stat-val"
+                        style={{
+                          color: "rgba(167,139,250,0.9)",
+                          fontWeight: 700,
+                        }}
+                      >
                         {project.performanceScore}
                       </span>
                     </div>
@@ -743,7 +811,9 @@ function Modal({
                 {project.techTags && (
                   <div className="pf-stat">
                     <span className="pf-stat-label">Teknoloji</span>
-                    <span className="pf-stat-val">{project.techTags.length} araç</span>
+                    <span className="pf-stat-val">
+                      {project.techTags.length} araç
+                    </span>
                   </div>
                 )}
               </div>
@@ -751,7 +821,8 @@ function Modal({
               {/* Spacer */}
               <div style={{ flex: 1 }} />
             </aside>
-          </div>{/* .pf-modal-body */}
+          </div>
+          {/* .pf-modal-body */}
         </div>
       </div>
     </>
@@ -762,13 +833,13 @@ function Modal({
    INNER (useSearchParams → inside Suspense)
 ══════════════════════════════════════════════════════════════════════ */
 function Inner({ projects, locale, dict }: Props) {
-  const router     = useRouter();
-  const pathname   = usePathname();
-  const params     = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
 
   const list = projects.length === 0 ? [FALLBACK] : projects;
 
-  const activeSlug    = params.get("project");
+  const activeSlug = params.get("project");
   const activeProject = activeSlug
     ? (list.find((p) => p.slug?.current === activeSlug) ?? null)
     : null;
@@ -795,22 +866,43 @@ function Inner({ projects, locale, dict }: Props) {
       <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
         <p
           style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            fontSize: "0.7rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            color: "rgba(167,139,250,0.6)", marginBottom: 16,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "rgba(167,139,250,0.6)",
+            marginBottom: 16,
           }}
         >
-          <span style={{ width: 28, height: 1, background: "linear-gradient(90deg, transparent, #a78bfa)", display: "inline-block" }} />
+          <span
+            style={{
+              width: 28,
+              height: 1,
+              background: "linear-gradient(90deg, transparent, #a78bfa)",
+              display: "inline-block",
+            }}
+          />
           {dict.portfolio?.badge ?? "Projelerim"}
-          <span style={{ width: 28, height: 1, background: "linear-gradient(90deg, #a78bfa, transparent)", display: "inline-block" }} />
+          <span
+            style={{
+              width: 28,
+              height: 1,
+              background: "linear-gradient(90deg, #a78bfa, transparent)",
+              display: "inline-block",
+            }}
+          />
         </p>
 
         <h2
           style={{
             fontSize: "clamp(2rem, 5vw, 3rem)",
-            fontWeight: 800, color: "#fff",
-            letterSpacing: "-0.03em", lineHeight: 1.1,
+            fontWeight: 800,
+            color: "#fff",
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
             margin: "0 0 14px",
           }}
         >
@@ -819,11 +911,15 @@ function Inner({ projects, locale, dict }: Props) {
 
         <p
           style={{
-            fontSize: "0.9rem", color: "rgba(255,255,255,0.38)",
-            maxWidth: 480, margin: "0 auto", lineHeight: 1.65,
+            fontSize: "0.9rem",
+            color: "rgba(255,255,255,0.38)",
+            maxWidth: 480,
+            margin: "0 auto",
+            lineHeight: 1.65,
           }}
         >
-          {dict.portfolio?.subtitle ?? "Tasarladığım ve geliştirdiğim projelerden seçkiler."}
+          {dict.portfolio?.subtitle ??
+            "Tasarladığım ve geliştirdiğim projelerden seçkiler."}
         </p>
 
         <span className="pf-section-line" style={{ marginTop: 32 }} />

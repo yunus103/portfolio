@@ -72,38 +72,65 @@ body {
    About Section — Dark-Only Premium Styles
    ───────────────────────────────────────────────────────── */
 
-/* Bio Card */
+/* ── About Cards ─────────────────────────────────────── */
 .about-card {
+  position: relative;
+  overflow: hidden;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(12px);
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(14px);
+  padding: 2rem;
+  transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .about-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.13);
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 60px -15px rgba(129, 140, 248, 0.12);
+  box-shadow: 0 0 70px -20px rgba(129, 140, 248, 0.14);
 }
 
 /* Info Pills */
 .about-pill {
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px; /* Slightly more rounded but still clean */
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .about-pill:hover {
   border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.82);
-  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Tech Stack Badge */
+.about-tech-badge {
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.775rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.about-tech-badge:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(129, 140, 248, 0.09);
   transform: translateY(-1px);
+  box-shadow: 0 2px 12px -4px rgba(129, 140, 248, 0.2);
 }
 
 /* CV Download Button */
@@ -125,9 +152,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .about-card {
-    padding: 1.5rem;
-  }
+  .about-card { padding: 1.25rem; }
 }
 
 /* ─────────────────────────────────────────────────────────
