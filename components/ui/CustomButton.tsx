@@ -25,7 +25,7 @@ export default function CustomButton({
       className={[
         'inline-flex items-center justify-center gap-2',
         'font-medium text-sm rounded-lg px-5 py-2.5',
-        'transition-all duration-200',
+        'transition-all duration-300',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         'cursor-pointer',
         variants[variant],

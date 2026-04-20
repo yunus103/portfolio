@@ -35,7 +35,7 @@ export default function LangSwitcher({ locale }: Props) {
         id="lang-tr"
         href={getPathForLocale('tr')}
         onClick={() => saveCookie('tr')}
-        className={`px-2 py-1 rounded transition-colors duration-200 ${
+        className={`px-2 py-1 rounded transition-colors duration-300 ${
           locale === 'tr'
             ? 'text-primary font-semibold'
             : 'text-foreground-muted hover:text-foreground'
@@ -48,7 +48,7 @@ export default function LangSwitcher({ locale }: Props) {
         id="lang-en"
         href={getPathForLocale('en')}
         onClick={() => saveCookie('en')}
-        className={`px-2 py-1 rounded transition-colors duration-200 ${
+        className={`px-2 py-1 rounded transition-colors duration-300 ${
           locale === 'en'
             ? 'text-primary font-semibold'
             : 'text-foreground-muted hover:text-foreground'

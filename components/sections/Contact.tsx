@@ -204,7 +204,7 @@ const SOCIALS: SocialDef[] = [
 ];
 
 /* ─── Live Istanbul clock ────────────────────────────────────────────────── */
-function IstanbulClock() {
+function IstanbulClock({ locale }: { locale: Locale }) {
   const [time, setTime] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -251,7 +251,13 @@ function IstanbulClock() {
             : "rgba(248,113,113,0.08)",
         }}
       >
-        {isAvailable ? "Müsait" : "Offline"}
+        {isAvailable
+          ? locale === "tr"
+            ? "Aktif"
+            : "Available"
+          : locale === "tr"
+            ? "Offline"
+            : "Offline"}
       </span>
     </div>
   );
@@ -396,6 +402,10 @@ export default function Contact({ locale, dict, siteSettings }: Props) {
         {/* ── Noise ────────────────────────────────────────────────────── */}
         <div className="noise-overlay" />
 
+        {/* ── Section handoff bridges ─────────────────────────────────── */}
+        <div className="section-bridge-top z-[2]" />
+        <div className="section-bridge-bottom z-[2]" />
+
         {/* ══════════════════════════════════════════════════════════════ */}
         {/*  CONTENT                                                      */}
         {/* ══════════════════════════════════════════════════════════════ */}
@@ -410,7 +420,7 @@ export default function Contact({ locale, dict, siteSettings }: Props) {
               transition: "opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1)",
             }}
           >
-            <IstanbulClock />
+            <IstanbulClock locale={locale} />
 
             <div className="mt-6 mb-4">
               <p className="text-[11px] font-semibold tracking-[0.38em] uppercase text-primary/55 mb-3">

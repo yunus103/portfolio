@@ -314,6 +314,10 @@ export default function HowIWork({ locale, dict }: Props) {
         {/* ── Noise texture ─────────────────────────────────────────────── */}
         <div className="noise-overlay" />
 
+        {/* ── Section handoff bridges ─────────────────────────────────── */}
+        <div className="section-bridge-top z-[2]" />
+        <div className="section-bridge-bottom z-[2]" />
+
         {/* ══════════════════════════════════════════════════════════════ */}
         {/*  CONTENT                                                      */}
         {/* ══════════════════════════════════════════════════════════════ */}

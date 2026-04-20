@@ -15,8 +15,7 @@ export default async function Portfolio({ locale, dict }: Props) {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden"
-      style={{ paddingTop: "6rem", paddingBottom: "6rem" }}
+      className="relative overflow-hidden py-24 lg:py-32"
     >
       {/* ── LightRays background ──────────────────────────────────── */}
       <div className="absolute inset-0 z-0 pointer-events-none">

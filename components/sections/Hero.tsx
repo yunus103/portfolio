@@ -366,8 +366,8 @@ export default function Hero({ locale, dict, profile }: Props) {
         >
           {/* Availability badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-400/20 bg-violet-900/20 backdrop-blur-sm text-violet-200/80 text-xs font-medium mb-8 tracking-wider uppercase shadow-lg shadow-violet-900/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Freelance için müsait
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-300/90" />
+            {locale === "tr" ? "Bağımsız geliştirici" : "Independent developer"}
           </div>
 
           {/* Greeting */}
@@ -401,7 +401,7 @@ export default function Hero({ locale, dict, profile }: Props) {
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
             <a
               href="#portfolio"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm active:scale-95 transition-all duration-300"
               style={{
                 background:
                   "linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #0891b2 100%)",
@@ -413,7 +413,7 @@ export default function Hero({ locale, dict, profile }: Props) {
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-white/80 font-medium text-sm hover:bg-white/10 hover:border-white/25 active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-white/80 font-medium text-sm hover:bg-white/10 hover:border-white/25 active:scale-95 transition-all duration-300"
             >
               {dict.hero.ctaSecondary}
             </a>

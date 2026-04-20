@@ -275,10 +275,14 @@ export default async function About({ locale, dict }: Props) {
       {/* ── Noise texture ──────────────────────────────────────────────── */}
       <div className="noise-overlay" />
 
+      {/* ── Section handoff bridges ───────────────────────────────────── */}
+      <div className="section-bridge-top z-[2]" />
+      <div className="section-bridge-bottom z-[2]" />
+
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  CONTENT                                                        */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         {/* ── SECTION HEADER ─────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 lg:mb-24 ab-animate ab-a1">
           <div>
@@ -293,8 +297,8 @@ export default async function About({ locale, dict }: Props) {
 
           {/* Availability badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/25 bg-emerald-900/15 text-emerald-400/80 text-[11px] font-semibold tracking-[0.2em] uppercase self-start sm:self-auto shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-            Freelance için müsait
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-300/90 flex-shrink-0" />
+            {locale === "tr" ? "Uzun vadeli iş birliklerine açık" : "Open to long-term collaborations"}
           </div>
         </div>
 

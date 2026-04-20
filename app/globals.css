@@ -19,6 +19,15 @@
   --accent: #a78bfa;
   --border: #1f2937;
   --surface: #111111;
+
+  /* Rhythm tokens */
+  --motion-fast: 150ms;
+  --motion-normal: 300ms;
+  --motion-slow: 600ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --section-py-mobile: 6rem;
+  --section-py-desktop: 8rem;
 }
 
 /* 
@@ -66,6 +75,32 @@ body {
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* Section handoff bridges */
+.section-bridge-top {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 7rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--background), transparent);
+}
+
+.section-bridge-bottom {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 7rem;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--background), transparent);
+}
+
+@media (min-width: 1024px) {
+  .section-bridge-top,
+  .section-bridge-bottom {
+    height: 9rem;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type MouseEvent } from 'react'
 import Link from 'next/link'
 import { HiBars3, HiXMark } from 'react-icons/hi2'
+import { useLenis } from 'lenis/react'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/getDictionary'
 import LangSwitcher from '@/components/ui/LangSwitcher'
@@ -15,6 +16,7 @@ interface Props {
 export default function Header({ locale, dict }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const lenis = useLenis()
 
   const homeHref = locale === 'tr' ? '/' : '/en'
 
@@ -31,6 +33,16 @@ export default function Header({ locale, dict }: Props) {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  function handleNavClick(e: MouseEvent<HTMLAnchorElement>, href: string) {
+    if (!href.startsWith('#')) return
+    e.preventDefault()
+    setMobileOpen(false)
+    lenis?.scrollTo(href, {
+      offset: -96,
+      duration: 1.1,
+    })
+  }
 
   return (
     <div className="fixed top-3 sm:top-4 left-0 right-0 z-50 px-3 sm:px-6">
@@ -54,7 +66,7 @@ export default function Header({ locale, dict }: Props) {
           <Link
             href={homeHref}
             id="header-logo"
-            className="text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-200 shrink-0"
+            className="text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-300 shrink-0"
           >
             YEA
           </Link>
@@ -69,7 +81,8 @@ export default function Header({ locale, dict }: Props) {
                 key={link.href}
                 id={link.id}
                 href={link.href}
-                className="text-sm text-foreground-muted hover:text-foreground transition-colors duration-200"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-sm text-foreground-muted hover:text-foreground transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -90,7 +103,7 @@ export default function Header({ locale, dict }: Props) {
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-border text-foreground-muted hover:text-foreground hover:border-primary transition-colors duration-200 cursor-pointer"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-border text-foreground-muted hover:text-foreground hover:border-primary transition-colors duration-300 cursor-pointer"
             >
               {mobileOpen ? (
                 <HiXMark className="w-4 h-4" />
@@ -119,8 +132,8 @@ export default function Header({ locale, dict }: Props) {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="py-2.5 text-sm font-medium text-foreground-muted hover:text-foreground transition-colors duration-200"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="py-2.5 text-sm font-medium text-foreground-muted hover:text-foreground transition-colors duration-300"
               >
                 {link.label}
               </a>
